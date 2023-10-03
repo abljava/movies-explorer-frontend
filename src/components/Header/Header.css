@@ -1,0 +1,13 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 74px;
+  background: #fff;
+  background-size: cover;
+}
+
+.header_dark {
+  background: #073042;
+}
+

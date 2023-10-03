@@ -1,0 +1,64 @@
+.about-project {
+  height: 608px;
+  background: #fff;
+  outline: 1px solid aqua;
+  padding-top: 110px;
+  padding-bottom: 110px;
+  box-sizing: border-box;
+}
+
+.table {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 70px 0 0 0;
+  gap: 40px;
+}
+
+.table__cell {
+}
+
+.table__cell-heading {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.8px;
+  margin: 0;
+}
+
+.table__cell-text {
+  margin: 0;
+  padding-top: 26px;
+  line-height: 1.43;
+}
+
+.timetable {
+  display: grid;
+  grid-template-columns: 20% 80%;
+  grid-template-rows: repeat(2, 36px);
+  text-align: center;
+  padding-top: 110px;
+}
+
+.timetable__cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
+.timetable__cell_green {
+  background-color: #2be080;
+}
+.timetable__cell_grey {
+  background: #f2f2f2;
+}
+
+.timetable__cell_white {
+  color: #a0a0a0;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.21;
+  padding-top: 10px;
+}
+

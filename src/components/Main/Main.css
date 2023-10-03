@@ -1,0 +1,16 @@
+.main {
+  /* padding-left: 70px;
+  padding-right: 70px;
+  box-sizing: border-box; */
+}
+
+.title {
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.88px;
+  margin: 0;
+  padding: 0 0 23px 0;
+  border-bottom: 1px solid #000000;
+}

@@ -1,0 +1,78 @@
+.register {
+  width: 396px;
+  margin: 0 auto;
+  padding-top: 70px;
+  padding-bottom: 70px;
+}
+
+.register__form {
+}
+
+.register__title {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: normal;
+  margin: 40px 0 16px;
+}
+
+.register__inputs {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.register__input-title {
+  color: #a0a0a0;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: normal;
+  padding-top: 24px;
+  margin: 0;
+}
+
+.register__input {
+  width: 100%;
+  color: #000;
+  border: 0;
+  border-bottom: 1px solid #e8e8e8;
+  padding: 5px 0 10px;
+
+  font-size: 14px;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.register__input:focus {
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #3456F3;
+}
+
+.register__submit-button {
+  width: 396px;
+  height: 45px;
+  margin-top: 152px;
+  border-radius: 3px;
+  background: #3456f3;
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.register__text {
+  color: #a0a0a0;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.register__login-link {
+  color: #3456f3;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: normal;
+}

@@ -10,7 +10,7 @@ function Promo() {
       <div className='promo__text'>
         <h1 className='promo__header'>
           Учебный проект студента факультета
-          <br />
+          
           Веб&#8209;разработки.
         </h1>
         <p className='promo__description'>

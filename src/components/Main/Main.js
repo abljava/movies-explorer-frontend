@@ -14,7 +14,7 @@ function Main() {
       <Header />
       <main className='main'>
         <Promo />
-        <AboutProject />
+        <AboutProject id='about-project'/>
         <Techs />
         <AboutMe />
         <Portfolio />

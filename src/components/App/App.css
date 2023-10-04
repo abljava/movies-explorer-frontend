@@ -31,6 +31,7 @@
     padding: 0 50px;
   }
 }
+
 @media screen and (max-width: 600px) {
   .page__centered {
     padding: 0 14px;

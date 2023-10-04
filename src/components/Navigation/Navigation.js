@@ -11,26 +11,32 @@ function Navigation({ loggedIn }) {
       {loggedIn ? (
         <>
           <nav className='navigation'>
-            <Link to='/movies'>
-              <p
-                className={`${
-                  location.pathname === '/movies' ? 'navigation__item_bold' : ''
-                } navigation__item`}
-              >
-                Фильмы
-              </p>
-            </Link>
-            <Link to='/saved-movies'>
-              <p
-                className={`${
-                  location.pathname === '/saved-movies'
-                    ? 'navigation__item_bold'
-                    : ''
-                } navigation__item`}
-              >
-                Сохранённые фильмы
-              </p>
-            </Link>
+            <ul className='navigation__items'>
+              <li>
+                <Link
+                  to='/movies'
+                  className={`${
+                    location.pathname === '/movies'
+                      ? 'navigation__item_active'
+                      : ''
+                  } navigation__item link`}
+                >
+                  Фильмы
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to='/saved-movies'
+                  className={`${
+                    location.pathname === '/saved-movies'
+                      ? 'navigation__item_active'
+                      : ''
+                  } navigation__item link`}
+                >
+                  Сохранённые фильмы
+                </Link>
+              </li>
+            </ul>
           </nav>
           <Link to='/profile'>
             <div className='navigation__account'>

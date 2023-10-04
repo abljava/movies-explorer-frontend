@@ -2,6 +2,18 @@
   height: 172px;
 }
 
+@media screen and (max-width: 1080px) {
+  .footer {
+    padding: 0 30px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .footer {
+    padding: 0 14px;
+  }
+}
+
 .footer__text {
   font-size: 13px;
   font-weight: 400;

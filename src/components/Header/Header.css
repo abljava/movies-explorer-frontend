@@ -1,5 +1,6 @@
 .header {
   display: flex;
+  position: relative;
   justify-content: space-between;
   align-items: center;
   height: 74px;
@@ -9,5 +10,17 @@
 
 .header_dark {
   background: #073042;
+}
+
+@media screen and (max-width: 1080px) {
+  .header {
+    padding: 0 30px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .header {
+    padding: 0 14px;
+  }
 }
 

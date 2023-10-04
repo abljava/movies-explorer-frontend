@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
-import Navi from '../Navi/Navi';
+import NavMobile from '../NavMobile/NavMobile';
 import './Header.css';
 
 function Header() {
   const location = useLocation();
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
 
   return (
     <header
@@ -17,8 +17,8 @@ function Header() {
       <Link to='/'>
         <div className='logo' />
       </Link>
-      {/* <Navi /> */}
       <Navigation loggedIn={loggedIn} />
+      {/* <NavMobile /> */}
     </header>
   );
 }

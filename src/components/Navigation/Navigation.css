@@ -1,17 +1,23 @@
 .navigation {
-  display: flex;
-  gap: 16px;
   padding-left: 68px;
   font-size: 13px;
   font-weight: 400;
   line-height: 1.38;
 }
 
+.navigation__items {
+  list-style: none;
+  display: flex;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+}
+
 .navigation__item {
   color: #000000;
 }
 
-.navigation__item_bold {
+.navigation__item_active {
   font-weight: 500;
 }
 

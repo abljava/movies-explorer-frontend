@@ -56,4 +56,5 @@
   height: 304px;
   background-image: url(../../images/promo-logo.png);
   background-size: cover;
+  background-repeat: no-repeat;
 }

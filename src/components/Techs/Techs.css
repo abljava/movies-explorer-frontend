@@ -6,6 +6,12 @@
   box-sizing: border-box;
 }
 
+@media screen and (max-width: 600px) {
+  .techs {
+    padding: 0 18px;
+  }
+}
+
 .techs__heading {
   text-align: center;
   font-size: 50px;

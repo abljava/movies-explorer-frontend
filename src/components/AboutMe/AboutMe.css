@@ -6,19 +6,31 @@
   outline: 1px solid green;
 }
 
+@media screen and (max-width: 1080px) {
+  .about-me {
+    padding-top: 90px;
+  }
+}
+
 .about-me__about {
   display: flex;
   justify-content: space-between;
   padding-top: 66px;
 }
 
+@media screen and (max-width: 1080px) {
+  .about-me__about {
+    gap: 49px;
+  }
+}
+
 .about-me__description {
-  width: 600px;
   display: grid;
 }
 
-.about-me__text {
 
+
+.about-me__text {
 }
 
 .about-me__heading {
@@ -29,6 +41,14 @@
   margin: 0;
 }
 
+@media screen and (max-width: 1080px) {
+  .about-me__heading {
+    font-size: 40px;
+    line-height: 1; /* 100% */
+    letter-spacing: -1.6px;
+  }
+}
+
 .about-me__subheading {
   font-size: 18px;
   font-weight: 500;
@@ -37,10 +57,28 @@
   margin: 0;
 }
 
+@media screen and (max-width: 1080px) {
+  .about-me__subheading {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.5; /* 150% */
+    padding-top: 16px;
+  }
+}
+
 .about-me__paragraph {
   padding-top: 26px;
   margin: 0;
   line-height: 1.57;
+}
+
+@media screen and (max-width: 1080px) {
+  .about-me__paragraph {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.5; /* 150% */
+    padding-top: 20px;
+  }
 }
 
 .about-me__link {
@@ -55,8 +93,19 @@
 }
 
 .about-me__photo {
+  display: block;
   width: 270px;
   height: 327px;
   background-image: url(../../images/aboutme-photo.png);
   border-radius: 10px;
+
+}
+
+@media screen and (max-width: 1080px) {
+  .about-me__photo {
+    width: 255px;
+    height: 307px;
+
+ 
+  }
 }

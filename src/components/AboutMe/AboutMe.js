@@ -1,4 +1,5 @@
 import './AboutMe.css';
+import photo from '../../images/aboutme-photo.png';
 
 function AboutMe() {
   return (
@@ -24,7 +25,7 @@ function AboutMe() {
             Github
           </a>
         </div>
-        <div className='about-me__photo'></div>
+        <img className='about-me__photo' src={photo} alt='about-me' />
       </div>
     </section>
   );

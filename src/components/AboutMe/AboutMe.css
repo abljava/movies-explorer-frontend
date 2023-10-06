@@ -3,11 +3,11 @@
   background: #ffffff;
   padding-top: 110px;
   box-sizing: border-box;
-  outline: 1px solid green;
 }
 
 @media screen and (max-width: 1080px) {
   .about-me {
+    height: 514px;
     padding-top: 90px;
   }
 }
@@ -25,10 +25,15 @@
 }
 
 .about-me__description {
+  width: 600px;
   display: grid;
 }
 
-
+@media screen and (max-width: 1080px) {
+  .about-me__description {
+    width: 364px;
+  }
+}
 
 .about-me__text {
 }
@@ -96,16 +101,13 @@
   display: block;
   width: 270px;
   height: 327px;
-  background-image: url(../../images/aboutme-photo.png);
+  background-size: cover;
   border-radius: 10px;
-
 }
 
 @media screen and (max-width: 1080px) {
   .about-me__photo {
     width: 255px;
     height: 307px;
-
- 
   }
 }

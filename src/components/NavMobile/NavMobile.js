@@ -3,13 +3,13 @@ import { Link, useLocation } from 'react-router-dom';
 
 import './NavMobile.css';
 
-function NavMobile({ loggedIn }) {
+function NavMobile({ isOpen, onClose }) {
   const location = useLocation();
 
   return (
     <>
-      <div className='nav-mobile'>
-        <button className='nav-mobile__close-btn button' type='button'></button>
+      <div className={`nav-mobile ${isOpen ? 'nav-mobile_opened' : ''}`}>
+        <button className='nav-mobile__close-btn button' type='button' onClick={onClose} ></button>
         <nav className='nav-mobile__menu'>
           <ul className='nav-mobile__items'>
             <li>
@@ -27,14 +27,6 @@ function NavMobile({ loggedIn }) {
                 Сохранённые фильмы
               </Link>
             </li>
-            {/* <li>
-              <Link to='/profile'>
-                <div className='nav-mobile__account'>
-                  <p className='nav-mobile__account-text'>Аккаунт</p>
-                  <div className='nav-mobile__account-icon'></div>
-                </div>
-              </Link>
-            </li> */}
           </ul>
         </nav>
         <Link to='/profile'>

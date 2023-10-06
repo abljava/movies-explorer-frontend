@@ -38,7 +38,7 @@ function Navigation({ loggedIn }) {
               </li>
             </ul>
           </nav>
-          <Link to='/profile'>
+          <Link to='/profile' className='navigation__account-btn' >
             <div className='navigation__account'>
               <p className='navigation__account-text'>Аккаунт</p>
               <div className='navigation__account-icon'></div>

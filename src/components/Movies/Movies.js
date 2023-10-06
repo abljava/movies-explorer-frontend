@@ -4,6 +4,7 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import './Movies.css';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
+import { movies } from '../../utils/movies';
 
 function Movies() {
   return (
@@ -11,7 +12,7 @@ function Movies() {
       <Header />
       <section className='movies page__centered'>
         <SearchForm />
-        <MoviesCardList />
+        <MoviesCardList movies={movies}/>
         <div className='movies__more'>
           <button className='movies__more-btn button'>Ещё</button>
         </div>

@@ -1,5 +1,6 @@
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
+import { savedMovies } from '../../utils/savedMovies';
 
 import './SavedMovies.css';
 import Header from '../Header/Header';
@@ -11,7 +12,7 @@ function SavedMovies() {
       <Header />
       <section className='saved page__centered'>
         <SearchForm />
-        <MoviesCardList />
+        <MoviesCardList movies={savedMovies} />
       </section>
       <Footer />
     </>

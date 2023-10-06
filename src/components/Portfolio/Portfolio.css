@@ -3,7 +3,14 @@
   padding-top: 100px;
   padding-bottom: 125px;
   box-sizing: border-box;
-  outline: 1px solid purple;
+}
+
+@media screen and (max-width: 1080px) {
+  .portfolio {
+    height: 480px;
+    padding-top: 90px;
+    padding-bottom: 90px;
+  }
 }
 
 .portfolio__heading {
@@ -41,6 +48,14 @@
   font-weight: 400;
   line-height: 1.66; /* 166.667% */
   letter-spacing: -1.2px;
+}
+
+@media screen and (max-width: 1080px) {
+  .portfolio__item_wide {
+    font-size: 28px;
+    line-height: 1.78; /* 178.571% */
+    letter-spacing: -1.12px;
+  }
 }
 
 .portfolio__item_narrow {

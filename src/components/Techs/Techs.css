@@ -6,20 +6,6 @@
   box-sizing: border-box;
 }
 
-@media screen and (max-width: 1080px) {
-  .techs {
-    height: 567px;
-    padding-top: 90px;
-    padding-bottom: 90px;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .techs {
-    padding: 0 18px;
-  }
-}
-
 .techs__heading {
   text-align: center;
   font-size: 50px;
@@ -28,12 +14,6 @@
   letter-spacing: -2px;
   padding-top: 90px;
   margin: 0;
-}
-
-@media screen and (max-width: 1080px) {
-  .techs__heading {
-    padding-top: 80px;
-  }
 }
 
 .techs__description {
@@ -47,15 +27,6 @@
   padding-top: 26px;
 }
 
-@media screen and (max-width: 1080px) {
-  .techs__description {
-    padding-top: 22px;
-    font-size: 12px;
-    line-height: 1.5; /* 150% */
-    letter-spacing: -0.48px;
-  }
-}
-
 .techs__list {
   display: flex;
   gap: 10px;
@@ -63,12 +34,6 @@
   padding: 100px 0 0;
   margin: 0;
   justify-content: center;
-}
-
-@media screen and (max-width: 1080px) {
-  .techs__list {
-    padding-top: 83px;
-  }
 }
 
 .techs__item {
@@ -82,11 +47,63 @@
 }
 
 @media screen and (max-width: 1080px) {
+  .techs {
+    height: 567px;
+    padding-top: 90px;
+    padding-bottom: 90px;
+  }
+
+  .techs__heading {
+    padding-top: 80px;
+  }
+
+  .techs__description {
+    padding-top: 22px;
+    font-size: 12px;
+    line-height: 1.5; /* 150% */
+    letter-spacing: -0.48px;
+  }
+
+  .techs__list {
+    padding-top: 83px;
+  }
+
   .techs__item {
     width: 84px;
     height: 57px;
     font-size: 12px;
     line-height: normal;
     letter-spacing: -0.48px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .techs {
+    height: 651px;
+    padding: 70px 18px;
+    background: #fff;
+  }
+
+  .techs__description {
+    width: auto;
+  }
+
+  .techs__heading {
+    font-size: 30px;
+    letter-spacing: -1.2px;
+    padding-top: 60px;
+  }
+
+  .techs__description {
+    font-size: 11px;
+    line-height: 1.45; /* 145.455% */
+    letter-spacing: -0.44px;
+    padding-top: 24px;
+  }
+
+  .techs__list {
+    display: grid;
+    grid-template-columns: repeat(2, 84px);
+    padding-top: 50px;
   }
 }

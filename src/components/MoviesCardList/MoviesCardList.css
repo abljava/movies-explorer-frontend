@@ -6,3 +6,11 @@
   padding: 0;
   list-style-type: none;
 }
+
+@media screen and (max-width: 1080px) {
+  .cardlist {
+    gap: 30px 30px;
+    height: 1176px;
+    overflow: hidden;
+  }
+}

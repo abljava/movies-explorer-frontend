@@ -58,7 +58,8 @@
   font-size: 11px;
   font-weight: 400;
   line-height: normal;
-  border: none;
+  border: 0;
+  outline: none;
   padding: 0;
   text-align: end;
 }

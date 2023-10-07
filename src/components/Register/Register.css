@@ -40,13 +40,14 @@
   font-size: 14px;
   font-weight: 400;
   line-height: normal;
+  &:focus {
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #3456F3;
+  }
 }
 
-.register__input:focus {
-  outline: none;
-  border: none;
-  border-bottom: 1px solid #3456F3;
-}
+
 
 .register__submit-button {
   width: 396px;

@@ -1,15 +1,18 @@
 import './FilterCheckbox.css';
-import icon from '../../images/search-filter-icon.svg'
-
+import icon from '../../images/search-filter-icon.svg';
 
 function FilterCheckbox() {
   return (
     <div className='checkbox'>
-      <img src={icon} alt='checkbox-icon' className='checkbox__icon' />
+      <div className='checkbox__filter'>
+        <label>
+          <input type='checkbox' className='checkbox__toggler' />
+          <span class='checkbox__toggler-slider'></span>
+        </label>
+      </div>
       <p className='checkbox__text'>Короткометражки</p>
     </div>
   );
 }
 
 export default FilterCheckbox;
-

@@ -1,36 +1,44 @@
 .nav-mobile {
   display: flex;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.3s, opacity 0.3s linear;
+  z-index: 3;
+}
+
+.nav-mobile_opened {
+  visibility: visible;
+  opacity: 1;
+}
+
+.nav-mobile__wrapper {
+  display: grid;
+  grid-template-rows: 159px 122px auto;
+
   width: 520px;
   height: 100vh;
   background: #fff;
 
   position: fixed;
-  right: -520px;
+  right: 0;
   top: 0;
-  /* position: absolute;
-  right: 0;
-  top: 0; */
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  transition: opacity 0.3s ease-in;
-  opacity: 0;
-}
-
-.nav-mobile_opened {
-  opacity: 1;
-  right: 0;
 }
 
 .nav-mobile__menu {
 }
 
 .nav-mobile__close-btn {
-  width: 22px;
-  height: 22px;
+  width: 33px;
+  height: 33px;
   background-image: url(../../images/nav-mobile-close.svg);
   background-size: contain;
-  align-self: self-end;
+  justify-self: self-end;
   margin: 22.44px 22.44px 0 0;
 }
 
@@ -50,26 +58,20 @@
 
 .nav-mobile__item {
   color: #000000;
-  position: relative;
+  padding-bottom: 4px;
 }
 
-.nav-mobile__item:after {
-  display: block;
-  position: absolute;
-  left: 0;
-  width: 0; /*задаём длинну линии до наведения курсора*/
-  height: 2px; /*задаём ширину линии*/
-  background-color: #000000; /*задаём цвет линии*/
-  content: '';
-  transition: width 0.3s ease-out; /*задаём время анимации*/
-}
-
-.nav-mobile__item:hover:after,
-.nav-mobile__item:focus:after {
-  width: 100%; /*устанавливаем значение 100% чтобы ссылка подчёркивалась полностью*/
+.nav-mobile__item_active {
+  border-bottom-style: solid;
 }
 
 .nav-mobile__account {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.nav-mobile__account-container {
   width: 100px;
   height: 32px;
   display: flex;

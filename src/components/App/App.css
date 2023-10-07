@@ -30,6 +30,10 @@
   .page__centered {
     padding: 0 50px;
   }
+
+  .page__centered_s {
+    padding: 0 30px;
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -37,7 +41,6 @@
     padding: 0 14px;
   }
 }
-
 
 a {
   text-decoration: none;
@@ -53,8 +56,6 @@ a {
     opacity: 0.8;
   }
 }
-
-
 
 .button {
   padding: 0;

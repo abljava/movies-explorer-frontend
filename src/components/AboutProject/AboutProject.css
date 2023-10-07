@@ -6,21 +6,7 @@
   box-sizing: border-box;
 }
 
-@media screen and (max-width: 1080px) {
-  .about-project {
-    height: 585px;
-    padding-top: 90px;
-    padding-bottom: 90px;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .about-project {
-    padding: 0 18px;
-  }
-}
-
-.table {
+.about-project__list {
   display: flex;
   list-style: none;
   margin: 0;
@@ -28,10 +14,10 @@
   gap: 40px;
 }
 
-.table__cell {
+.about-project__item {
 }
 
-.table__cell-heading {
+.about-project__item-heading {
   font-size: 20px;
   font-weight: 400;
   line-height: normal;
@@ -39,33 +25,18 @@
   margin: 0;
 }
 
-.table__cell-text {
+.about-project__item-text {
   margin: 0;
   padding-top: 26px;
   line-height: 1.43;
 }
 
-@media screen and (max-width: 1080px) {
-  .table__cell-text {
-    font-size: 12px;
-    line-height: 1.5;
-    padding-top: 22px;
-  }
-}
-
-.timetable {
+.about-project__timetable {
   display: grid;
   grid-template-columns: 20% 80%;
   grid-template-rows: repeat(2, 36px);
   text-align: center;
   padding-top: 110px;
-}
-
-@media screen and (max-width: 1080px) {
-  .timetable {
-
-    padding-top: 93px;
-  }
 }
 
 .timetable__cell {
@@ -78,6 +49,7 @@
 .timetable__cell_green {
   background-color: #2be080;
 }
+
 .timetable__cell_grey {
   background: #f2f2f2;
 }
@@ -88,4 +60,28 @@
   font-weight: 500;
   line-height: 1.21;
   padding-top: 10px;
+}
+
+@media screen and (max-width: 1080px) {
+  .about-project {
+    height: 585px;
+    padding-top: 90px;
+    padding-bottom: 90px;
+  }
+
+  .table__cell-text {
+    font-size: 12px;
+    line-height: 1.5;
+    padding-top: 22px;
+  }
+
+  .timetable {
+    padding-top: 93px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .about-project {
+    padding: 70px 18px;
+  }
 }

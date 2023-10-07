@@ -40,12 +40,11 @@
   font-size: 14px;
   font-weight: 400;
   line-height: normal;
-}
-
-.login__input:focus {
-  outline: none;
-  border: none;
-  border-bottom: 1px solid #3456F3;
+  &:focus {
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #3456F3;
+  }
 }
 
 .login__submit-button {

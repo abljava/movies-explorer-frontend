@@ -10,7 +10,13 @@
 @media screen and (max-width: 1080px) {
   .cardlist {
     gap: 30px 30px;
-    height: 1176px;
+    height: max-content;
     overflow: hidden;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .cardlist {
+    height: 527px;
   }
 }

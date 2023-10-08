@@ -1,10 +1,9 @@
 import React from 'react';
 import './MoviesCard.css';
-// import cardImage from '../../images/movies-card.png';
 
 function MoviesCard({ movie }) {
   return (
-    <li className='card__item'>
+    <li className='card'>
       <img src={movie.link} alt={movie.name} className='card__img' />
       <div className='card__info'>
         <div className='card__description'>

@@ -40,6 +40,10 @@
   .page__centered {
     padding: 0 14px;
   }
+
+  .page__centered_s {
+    padding: 0 10px;
+  }
 }
 
 a {

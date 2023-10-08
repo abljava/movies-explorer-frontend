@@ -71,3 +71,14 @@
     line-height: 1.38; /* 138.462% */
   }
 }
+
+@media screen and (max-width: 450px) {
+  .checkbox {
+    margin-top: 41px;
+    justify-content: center;
+  }
+
+  .checkbox__text {
+    font-size: 11px;
+  }
+}

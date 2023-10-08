@@ -11,6 +11,8 @@
 }
 
 .search__input {
+  padding: 0;
+  width: 200px;
   border: none;
   outline: none;
   font-size: 28px;
@@ -35,5 +37,20 @@
     height: 228px;
     padding-top: 80px;
   }
+}
 
+@media screen and (max-width: 600px) {
+  .search {
+    padding: 84px 4px 0;
+    height: 194px;
+  }
+
+  .search__form {
+    padding-bottom: 10px;
+    align-items: center;
+  }
+
+  .search__input {
+    font-size: 18px;
+  }
 }

@@ -1,5 +1,4 @@
 import './FilterCheckbox.css';
-import icon from '../../images/search-filter-icon.svg';
 
 function FilterCheckbox() {
   return (

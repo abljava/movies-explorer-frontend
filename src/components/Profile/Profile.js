@@ -5,7 +5,8 @@ function Profile() {
   return (
     <>
       <Header />
-      <section className='profile'>
+      <main className='profile'>
+        <div className="profile__container">
         <form className='profile__form' name='profile-form'>
           <h2 className='profile__title'>Привет, Виталий!</h2>
           <fieldset className='profile__inputs'>
@@ -26,14 +27,21 @@ function Profile() {
               />
             </label>
           </fieldset>
-          <button className='profile__button profile__button_submit button'>
+        </form>
+        <div className='profile__submit'>
+          <button
+            type='submit'
+            className='profile__button profile__button_submit button'
+          >
             Редактировать
           </button>
           <button className='profile__button profile__button_logout button'>
             Выйти из аккаунта
           </button>
-        </form>
-      </section>
+        </div>
+        </div>
+
+      </main>
     </>
   );
 }

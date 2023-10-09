@@ -135,6 +135,27 @@
   line-height: 16px;
 }
 
+@media screen and (max-width: 600px) {
+  .nav-mobile__wrapper {
+    width: 320px;
+    grid-template-rows: 145px 122px auto;
+  }
+
+  .nav-mobile__items {
+    gap: 24px;
+  }
+
+  .nav-mobile__close-btn {
+    margin: 13.44px 13.44px 0 0;
+
+  }
+
+  .nav-mobile__account-container {
+    margin-bottom: 46px;
+  }
+
+}
+
 /* .header_dark .nav-mobile__item {
   color: white;
 }

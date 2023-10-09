@@ -1,11 +1,15 @@
 .register {
-  width: 396px;
-  margin: 0 auto;
-  padding-top: 70px;
-  padding-bottom: 70px;
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
 }
 
-.register__form {
+.register__container {
+  padding-top: 10px;
 }
 
 .register__title {
@@ -38,16 +42,13 @@
   padding: 5px 0 10px;
 
   font-size: 14px;
-  font-weight: 400;
   line-height: normal;
   &:focus {
     outline: none;
     border: none;
-    border-bottom: 1px solid #3456F3;
+    border-bottom: 1px solid #3456f3;
   }
 }
-
-
 
 .register__submit-button {
   width: 396px;
@@ -76,4 +77,47 @@
   font-size: 14px;
   font-weight: 400;
   line-height: normal;
+}
+
+@media screen and (max-width: 1080px) {
+}
+
+@media screen and (max-width: 600px) {
+  .register__container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 56px 0 18px;
+  }
+
+  .register__items {
+    width: 260px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .register__title {
+    margin: 50px 0 0 0;
+  }
+
+  .register__form {
+    width: 100%;
+    align-self: flex-start;
+    padding-top: 56px;
+  }
+
+  .register__submit-button {
+    margin: 0;
+    width: 260px;
+    font-size: 12px;
+  }
+
+  .register__text,
+  .register__login-link {
+    font-size: 12px;
+  }
 }

@@ -25,6 +25,15 @@
   padding: 0;
 }
 
+.login__input-container {
+  position: relative;
+}
+
+.input-error {
+  position: absolute;
+  color: red;
+}
+
 .login__input-title {
   color: #a0a0a0;
   font-size: 10px;
@@ -118,3 +127,5 @@
     font-size: 12px;
   }
 }
+
+

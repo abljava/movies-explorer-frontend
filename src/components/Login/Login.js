@@ -7,18 +7,13 @@ import './Login.css';
 
 const useValidation = (value, validators) => {
   const [isEmpty, setIsEmpty] = useState(true);
-  const [minLengthError, setMinLengthError] = useState(false);
   const [isEmailError, setIsEmailError] = useState(false);
-  const [errorText, setErrorText] = useState('');
+  const [minLength, setMinLength] = useState(false);
+  const [maxLength, setMaxLength] = useState(false);
 
   useEffect(() => {
     for (const validation in validators) {
       switch (validation) {
-        case 'minLength':
-          value.length < validators[validation]
-            ? setMinLengthError(true)
-            : setMinLengthError(false);
-          break;
         case 'isEmpty':
           value ? setIsEmpty(false) : setIsEmpty(true);
           break;
@@ -26,15 +21,26 @@ const useValidation = (value, validators) => {
           const re =
             /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
           re.test(String(value).toLowerCase())
-            ? setIsEmailError(false) || setErrorText('Incorrect email')
+            ? setIsEmailError(false)
             : setIsEmailError(true);
+          break;
+        case 'minLength':
+          value.length < validators[validation]
+            ? setMinLength(true)
+            : setMinLength(false);
+          break;
+        case 'maxLength':
+          value.length > validators[validation]
+            ? setMaxLength(true)
+            : setMaxLength(false);
+          break;
 
         default:
       }
     }
   }, [value]);
 
-  return { isEmpty, minLengthError, isEmailError, errorText };
+  return { isEmpty, minLength, maxLength, isEmailError };
 };
 
 const useInput = (initialValue, validators) => {
@@ -54,7 +60,15 @@ const useInput = (initialValue, validators) => {
 };
 
 function Login() {
-  const email = useInput('', { isEmpty: true, minLength: 3 });
+  const email = useInput('', {
+    isEmpty: true,
+    isEmailError: false,
+  });
+
+  const password = useInput('', {
+    isEmpty: true,
+    minLength: 6,
+  });
 
   return (
     <>
@@ -67,7 +81,7 @@ function Login() {
             <h2 className='login__title'>Рады видеть!</h2>
             <form className='login__form' name='signin'>
               <fieldset className='login__inputs'>
-                <label>
+                <label className='login__input-container'>
                   <p className='login__input-title'>E-mail</p>
                   <input
                     onChange={(e) => email.onChange(e)}
@@ -82,20 +96,42 @@ function Login() {
                     maxLength='40'
                     required
                   />
-                  {email.isTouched && email.isEmpty && <div>Empty field</div>}
+                  {email.isTouched && email.isEmpty ? (
+                    <div className='input-error'>Обязательное поле</div>
+                  ) : (
+                    !email.isEmpty &&
+                    email.isEmailError && (
+                      <div className='input-error'>
+                        Введите корректный email
+                      </div>
+                    )
+                  )}
+
                 </label>
-                <label>
+                <label className='login__input-container'>
                   <p className='login__input-title'>Пароль</p>
                   <input
+                    onChange={(e) => password.onChange(e)}
+                    onBlur={(e) => password.onBlur(e)}
+                    value={password.value}
+                    name='password'
                     type='password'
                     className='login__input'
-                    name='password'
                     id='password-input'
                     placeholder=''
                     minLength='8'
                     maxLength='16'
                     required
                   />
+                   {password.isTouched && password.isEmpty ? (
+                    <div className='input-error'>Обязательное поле</div>
+                  ) : (
+                    password.minLength && (
+                      <div className='input-error'>
+                        Минимум 6 символов
+                      </div>
+                    )
+                  )}
                 </label>
               </fieldset>
             </form>

@@ -14,13 +14,13 @@ function Movies() {
   return (
     <>
       <Header />
-      <section className={`movies page__centered ${location.path === '/' ? '' : 'page__centered_s'}`}>
+      <main className={`movies page__centered ${location.pathname === '/' ? '' : 'page__centered_s'}`}>
         <SearchForm />
         <MoviesCardList movies={movies}/>
         <div className='movies__more'>
           <button className='movies__more-btn button'>Ещё</button>
         </div>
-      </section>
+      </main>
       <Footer />
     </>
   );

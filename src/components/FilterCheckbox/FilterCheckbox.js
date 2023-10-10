@@ -2,7 +2,7 @@ import './FilterCheckbox.css';
 
 function FilterCheckbox() {
   return (
-    <div className='checkbox'>
+    <section className='checkbox'>
       <div className='checkbox__filter'>
         <label>
           <input type='checkbox' className='checkbox__toggler' />
@@ -10,7 +10,7 @@ function FilterCheckbox() {
         </label>
       </div>
       <p className='checkbox__text'>Короткометражки</p>
-    </div>
+    </section>
   );
 }
 

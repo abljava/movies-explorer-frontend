@@ -1,63 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-
-import Preloader from '../Preloader/Preloader';
+import useInput from '../../utils/validation';
 
 import './Login.css';
-
-const useValidation = (value, validators) => {
-  const [isEmpty, setIsEmpty] = useState(true);
-  const [isEmailError, setIsEmailError] = useState(false);
-  const [minLength, setMinLength] = useState(false);
-  const [maxLength, setMaxLength] = useState(false);
-
-  useEffect(() => {
-    for (const validation in validators) {
-      switch (validation) {
-        case 'isEmpty':
-          value ? setIsEmpty(false) : setIsEmpty(true);
-          break;
-        case 'isEmailError':
-          const re =
-            /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-          re.test(String(value).toLowerCase())
-            ? setIsEmailError(false)
-            : setIsEmailError(true);
-          break;
-        case 'minLength':
-          value.length < validators[validation]
-            ? setMinLength(true)
-            : setMinLength(false);
-          break;
-        case 'maxLength':
-          value.length > validators[validation]
-            ? setMaxLength(true)
-            : setMaxLength(false);
-          break;
-
-        default:
-      }
-    }
-  }, [value]);
-
-  return { isEmpty, minLength, maxLength, isEmailError };
-};
-
-const useInput = (initialValue, validators) => {
-  const [value, setValue] = useState(initialValue);
-  const [isTouched, setIsTouched] = useState(false);
-  const isValid = useValidation(value, validators);
-
-  const onChange = (e) => {
-    setValue(e.target.value);
-  };
-
-  const onBlur = (e) => {
-    setIsTouched(true);
-  };
-
-  return { value, onChange, onBlur, isTouched, ...isValid };
-};
 
 function Login() {
   const email = useInput('', {
@@ -67,7 +12,8 @@ function Login() {
 
   const password = useInput('', {
     isEmpty: true,
-    minLength: 6,
+    minLength: 8,
+    maxLength: 16,
   });
 
   return (
@@ -89,7 +35,11 @@ function Login() {
                     value={email.value}
                     name='email'
                     type='email'
-                    className='login__input'
+                    className={`login__input ${
+                      !email.isEmpty && email.isEmailError
+                        ? 'login__input_error'
+                        : ''
+                    }`}
                     id='email-input'
                     placeholder='pochta@yandex.ru'
                     minLength='2'
@@ -106,7 +56,6 @@ function Login() {
                       </div>
                     )
                   )}
-
                 </label>
                 <label className='login__input-container'>
                   <p className='login__input-title'>Пароль</p>
@@ -116,19 +65,22 @@ function Login() {
                     value={password.value}
                     name='password'
                     type='password'
-                    className='login__input'
+                    className={`login__input ${
+                      password.minLength ? 'login__input_error' : ''
+                    }`}
                     id='password-input'
                     placeholder=''
                     minLength='8'
                     maxLength='16'
                     required
                   />
-                   {password.isTouched && password.isEmpty ? (
+                  {password.isTouched && password.isEmpty ? (
                     <div className='input-error'>Обязательное поле</div>
                   ) : (
-                    password.minLength && (
+                    !password.isEmpty &&
+                    (password.minLength || password.maxLength) && (
                       <div className='input-error'>
-                        Минимум 6 символов
+                        Введите от 8 до 16 символов
                       </div>
                     )
                   )}
@@ -137,7 +89,15 @@ function Login() {
             </form>
           </div>
           <div className='login__submit'>
-            <button type='submit' className='login__submit-button button'>
+            <button
+              disabled={!email.isInputValid || !password.isInputValid}
+              type='submit'
+              className={`button login__submit-button ${
+                !email.isInputValid || !password.isInputValid
+                  ? 'login__submit-button_disabled'
+                  : ''
+              }`}
+            >
               Войти
             </button>
             <p className='login__text'>

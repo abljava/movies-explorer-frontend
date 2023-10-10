@@ -9,7 +9,7 @@ function AboutMe() {
       <div className='about-me__about'>
         <div className='about-me__description'>
           <div className='about-me__text'>
-            <h1 className='about-me__heading'>Виталий</h1>
+            <h2 className='about-me__heading'>Виталий</h2>
             <h3 className='about-me__subheading'>
               Фронтенд-разработчик, 30 лет
             </h3>
@@ -18,10 +18,16 @@ function AboutMe() {
               меня есть жена и дочь. Я люблю слушать музыку, а ещё увлекаюсь
               бегом. Недавно начал кодить. С 2015 года работал в компании «СКБ
               Контур». После того, как прошёл курс по веб&#8209;разработке,
-              начал заниматься фриланс&#8209;заказами и ушёл с постоянной работы.
+              начал заниматься фриланс&#8209;заказами и ушёл с постоянной
+              работы.
             </p>
           </div>
-          <a href='github.com' target='_blank' className='about-me__link'>
+          <a
+            href='https://github.com/abljava'
+            target='_blank'
+            rel='noreferrer'
+            className='about-me__link'
+          >
             Github
           </a>
         </div>

@@ -26,15 +26,20 @@
   margin: 0;
 }
 
-.card__like-btn {
-  width: 24px;
-  height: 24px;
-  background-image: url(../../images/movies-like.svg);
-  transition: opacity 0.3s ease-in-out;
+.card__button-container {
+  opacity: 1;
 }
 
-.card__like-btn:hover {
-  opacity: 0.8;
+.card__button-container_hidden {
+  opacity: 0;
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.card__button {
+  width: 24px;
+  height: 24px;
 }
 
 .card__duration {
@@ -58,5 +63,8 @@
   .card__img {
     height: 170px;
   }
-}
 
+  .card__button-container_hidden {
+    opacity: 1;
+  }
+}

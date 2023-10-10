@@ -59,6 +59,10 @@
   }
 }
 
+.login__input_error {
+  color: #FF3055;
+}
+
 .login__submit-button {
   width: 396px;
   height: 45px;
@@ -70,6 +74,15 @@
   font-size: 14px;
   font-weight: 500;
   line-height: normal;
+}
+
+.login__submit-button_disabled {
+  background: #F8F8F8;
+  color: #C2C2C2;
+  cursor: auto;
+  &:hover {
+    opacity: 1;
+  }
 }
 
 .login__text {

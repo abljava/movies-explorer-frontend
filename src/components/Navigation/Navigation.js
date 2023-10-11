@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import AccountButton from '../AccountButton/AccountButton';
 
 import './Navigation.css';
 
@@ -38,15 +39,10 @@ function Navigation({ loggedIn }) {
               </li>
             </ul>
           </nav>
-          <Link to='/profile' className='navigation__account-btn' >
-            <div className='navigation__account'>
-              <p className='navigation__account-text'>Аккаунт</p>
-              <div className='navigation__account-icon'></div>
-            </div>
-          </Link>
+          <AccountButton />
         </>
       ) : (
-        <nav className='navigation_unauth'>
+        <nav className='navigation'>
           <Link to='/signup' className='navigation__signup link'>
             Регистрация
           </Link>

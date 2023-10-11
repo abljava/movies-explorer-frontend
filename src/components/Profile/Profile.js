@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import useInput from '../../utils/validation';
 import Header from '../Header/Header';
 import './Profile.css';
@@ -11,19 +12,23 @@ function Profile() {
   }
 
   function handleSaveClick() {
-    document.querySelector('.profile__save-button').classList.add('profile__save-button_disabled')
-    document.querySelector('.profile__error-message').classList.remove('profile__error-message_hidden')
+    document
+      .querySelector('.profile__save-button')
+      .classList.add('profile__save-button_disabled');
+    document
+      .querySelector('.profile__error-message')
+      .classList.remove('profile__error-message_hidden');
   }
 
   return (
     <>
       <Header />
       <main className='profile'>
-        <div className='profile__container'>
+        <section className='profile__container'>
           <form className='profile__form' name='profile-form'>
-            <h2 className='profile__title'>Привет, Виталий!</h2>
+            <h1 className='profile__title'>Привет, Виталий!</h1>
             <fieldset className='profile__inputs'>
-              <div className='profile__input-title'>Имя</div>
+              <span className='profile__input-title'>Имя</span>
               <label className='profile__input-container'>
                 <input
                   type='text'
@@ -31,7 +36,7 @@ function Profile() {
                   placeholder='Виталий'
                 />
               </label>
-              <div className='profile__input-title'>E-mail</div>
+              <span className='profile__input-title'>E-mail</span>
               <label className='profile__input-container'>
                 <input
                   type='email'
@@ -51,12 +56,12 @@ function Profile() {
                 >
                   Редактировать
                 </button>
-                <button
-                  type='button'
+                <Link
+                  to='/'
                   className='profile__button profile__button_logout button'
                 >
                   Выйти из аккаунта
-                </button>
+                </Link>
               </div>
             )}
             {onEdit && (
@@ -74,35 +79,10 @@ function Profile() {
               </>
             )}
           </div>
-        </div>
+        </section>
       </main>
     </>
   );
 }
 
 export default Profile;
-
-// const username = useInput('', {
-//   isEmpty: true,
-//   minLength: 2,
-//   maxLength: 40,
-// });
-
-// const email = useInput('', {
-//   isEmpty: true,
-//   isEmailError: false,
-// });
-
-// function handleEditClick() {
-//   document
-//     .querySelector('.profile__button-container')
-//     .classList.add('profile__button_hidden');
-//   document
-//     .querySelector('.profile__save-button')
-//     .classList.remove('profile__button_hidden');
-//   document
-//     .querySelector('.profile__save-button')
-//     .classList.add('profile__save-button_disabled');
-// }
-
-// function handleSaveClick() {}

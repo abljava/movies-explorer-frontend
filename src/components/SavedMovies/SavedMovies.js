@@ -9,11 +9,13 @@ import Footer from '../Footer/Footer';
 function SavedMovies() {
   return (
     <>
-      <Header />
-      <section className='saved page__centered page__centered_s'>
-        <SearchForm />
-        <MoviesCardList movies={savedMovies} />
-      </section>
+      <div className='content'>
+        <Header />
+        <main className='saved page__centered page__centered_s'>
+          <SearchForm />
+          <MoviesCardList movies={savedMovies} />
+        </main>
+      </div>
       <Footer />
     </>
   );

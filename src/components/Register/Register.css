@@ -26,6 +26,7 @@
 }
 
 .register__input-title {
+  display: block;
   color: #a0a0a0;
   font-size: 10px;
   font-weight: 400;

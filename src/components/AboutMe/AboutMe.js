@@ -9,10 +9,10 @@ function AboutMe() {
       <div className='about-me__about'>
         <div className='about-me__description'>
           <div className='about-me__text'>
-            <h2 className='about-me__heading'>Виталий</h2>
-            <h3 className='about-me__subheading'>
+            <h3 className='about-me__heading'>Виталий</h3>
+            <h4 className='about-me__subheading'>
               Фронтенд-разработчик, 30 лет
-            </h3>
+            </h4>
             <p className='about-me__paragraph'>
               Я родился и живу в Саратове, закончил факультет экономики СГУ. У
               меня есть жена и дочь. Я люблю слушать музыку, а ещё увлекаюсь
@@ -31,7 +31,7 @@ function AboutMe() {
             Github
           </a>
         </div>
-        <img className='about-me__photo' src={photo} alt='about-me' />
+        <img className='about-me__photo' src={photo} alt='фото автора проекта' />
       </div>
     </section>
   );

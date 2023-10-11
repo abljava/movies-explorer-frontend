@@ -18,7 +18,7 @@ function MoviesCard({ movie }) {
             <button type='button' className='card__button-container button'>
               <img
                 src={cardButton}
-                alt='card button'
+                alt='кнопка лайка карточки'
                 className='card__button'
               />
             </button>
@@ -30,7 +30,7 @@ function MoviesCard({ movie }) {
             >
               <img
                 src={cardButtonDelete}
-                alt='card button'
+                alt='кнопка удаления карточки'
                 className='card__button'
               />
             </button>

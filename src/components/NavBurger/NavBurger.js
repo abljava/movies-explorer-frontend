@@ -8,7 +8,7 @@ function NavBurger({ onNavMobile }) {
 
   return (
     <div className='burger'>
-      <button
+      <button 
         className={`${
           location.pathname === '/' ? '' : 'burger__button_black'
         } burger__button button`}

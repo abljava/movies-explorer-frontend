@@ -6,18 +6,18 @@ function AboutProject() {
       <h3 className='title'>О проекте</h3>
       <ul className='about-project__list'>
         <li className='about-project__item'>
-          <p className='about-project__item-heading'>
+          <h3 className='about-project__item-heading'>
             Дипломный проект включал 5 этапов
-          </p>
+          </h3>
           <p className='about-project__item-text'>
             Составление плана, работу над бэкендом, вёрстку, добавление
             функциональности и финальные доработки.
           </p>
         </li>
         <li className='about-project__item'>
-          <p className='about-project__item-heading'>
+          <h3 className='about-project__item-heading'>
             На выполнение диплома ушло 5 недель
-          </p>
+          </h3>
           <p className='about-project__item-text'>
             У каждого этапа был мягкий и жёсткий дедлайн, которые нужно было
             соблюдать, чтобы успешно защититься.

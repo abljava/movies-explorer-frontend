@@ -28,7 +28,7 @@ function Header() {
         <div className='logo' />
       </Link>
       <Navigation loggedIn={loggedIn} />
-      <NavBurger onNavMobile={handleBurgerClick} />
+      {loggedIn && <NavBurger onNavMobile={handleBurgerClick} />}
       <NavMobile isOpen={isNavMobileOpen} onClose={handleNavMobileClose} />
     </header>
   );

@@ -13,14 +13,22 @@ function Movies() {
 
   return (
     <>
-      <Header />
-      <main className={`movies page__centered ${location.pathname === '/' ? '' : 'page__centered_s'}`}>
-        <SearchForm />
-        <MoviesCardList movies={movies}/>
-        <div className='movies__more'>
-          <button className='movies__more-btn button'>Ещё</button>
-        </div>
-      </main>
+      <div className='content'>
+        <Header />
+        <main
+          className={`movies page__centered ${
+            location.pathname === '/' ? '' : 'page__centered_s'
+          }`}
+        >
+          <SearchForm />
+          <MoviesCardList movies={movies} />
+          <div className='movies__more'>
+            <button type='button' className='movies__more-btn button'>
+              Ещё
+            </button>
+          </div>
+        </main>
+      </div>
       <Footer />
     </>
   );

@@ -16,7 +16,15 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.page__container,
+html {
+  height: 100vh;
+}
+
 .page__container {
+  display: flex;
+  flex-direction: column;
+
   max-width: 1280px;
   margin: 0 auto;
   box-sizing: border-box;
@@ -24,6 +32,14 @@
 
 .page__centered {
   padding: 0 70px;
+}
+
+.content {
+  flex: 1 0 auto;
+}
+
+.footer {
+  flex-shrink: 0;
 }
 
 @media screen and (max-width: 1080px) {
@@ -85,5 +101,5 @@ a {
 .input-error {
   padding-top: 6px;
   font-size: 10px;
-  color: #FF3055;
+  color: #ff3055;
 }

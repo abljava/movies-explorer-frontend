@@ -29,11 +29,11 @@ function Register() {
           <Link to='/'>
             <div className='logo' />
           </Link>
-          <h2 className='register__title'>Добро пожаловать!</h2>
+          <h1 className='register__title'>Добро пожаловать!</h1>
           <form className='register__form' name='signup'>
             <fieldset className='register__inputs'>
               <label>
-                <p className='register__input-title'>Имя</p>
+                <span className='register__input-title'>Имя</span>
                 <input
                   onChange={(e) => username.onChange(e)}
                   onBlur={(e) => username.onBlur(e)}
@@ -64,7 +64,7 @@ function Register() {
                 )}
               </label>
               <label>
-                <p className='register__input-title'>E-mail</p>
+                <span className='register__input-title'>E-mail</span>
                 <input
                   onChange={(e) => email.onChange(e)}
                   onBlur={(e) => email.onBlur(e)}
@@ -92,7 +92,7 @@ function Register() {
                 )}
               </label>
               <label>
-                <p className='register__input-title'>Пароль</p>
+                <span className='register__input-title'>Пароль</span>
                 <input
                   onChange={(e) => password.onChange(e)}
                   onBlur={(e) => password.onBlur(e)}

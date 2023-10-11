@@ -24,11 +24,11 @@ function Login() {
             <Link to='/'>
               <div className='logo' />
             </Link>
-            <h2 className='login__title'>Рады видеть!</h2>
+            <h1 className='login__title'>Рады видеть!</h1>
             <form className='login__form' name='signin'>
               <fieldset className='login__inputs'>
                 <label className='login__input-container'>
-                  <p className='login__input-title'>E-mail</p>
+                  <span className='login__input-title'>E-mail</span>
                   <input
                     onChange={(e) => email.onChange(e)}
                     onBlur={(e) => email.onBlur(e)}
@@ -58,7 +58,7 @@ function Login() {
                   )}
                 </label>
                 <label className='login__input-container'>
-                  <p className='login__input-title'>Пароль</p>
+                  <span className='login__input-title'>Пароль</span>
                   <input
                     onChange={(e) => password.onChange(e)}
                     onBlur={(e) => password.onBlur(e)}

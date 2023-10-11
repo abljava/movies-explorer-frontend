@@ -51,7 +51,7 @@
   .footer__items {
     flex-direction: column-reverse;
     align-items: center;
-    padding: 33px 0 0 0;
+    padding: 33px 0 20px 0;
   }
 
   .footer__links {

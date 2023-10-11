@@ -1,5 +1,4 @@
 .about-me {
-  height: 554px;
   background: #ffffff;
   padding-top: 110px;
   box-sizing: border-box;
@@ -62,7 +61,6 @@
 
 @media screen and (max-width: 1080px) {
   .about-me {
-    height: 514px;
     padding-top: 90px;
   }
 
@@ -102,8 +100,7 @@
 
 @media screen and (max-width: 600px) {
   .about-me {
-    height: 834px;
-    padding: 70px 14px;
+    padding: 72px 14px 0;
   }
 
   .about-me__about {

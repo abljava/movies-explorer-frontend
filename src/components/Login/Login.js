@@ -41,7 +41,7 @@ function Login() {
                         : ''
                     }`}
                     id='email-input'
-                    placeholder='pochta@yandex.ru'
+                    placeholder='Введите email'
                     minLength='2'
                     maxLength='40'
                     required
@@ -69,7 +69,7 @@ function Login() {
                       password.minLength ? 'login__input_error' : ''
                     }`}
                     id='password-input'
-                    placeholder=''
+                    placeholder='Введите пароль'
                     minLength='8'
                     maxLength='16'
                     required

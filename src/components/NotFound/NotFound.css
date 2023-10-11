@@ -1,15 +1,15 @@
 .not-found {
-  display: flex;
-  position: relative;
   width: 100%;
   height: 100vh;
-  justify-content: center;
-  align-items: center;
-}
-
-.not-found__container {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+}
+
+.not-found__message {
+  display: flex;
+  flex-direction: column;
+  margin-top: 245px;
 }
 
 .not-found__title {
@@ -22,6 +22,7 @@
 
 .not-found__text {
   margin: 0;
+  margin-top: 5px;
   text-align: center;
   font-size: 16px;
   font-weight: 400;
@@ -29,7 +30,6 @@
 }
 
 .not-found__button {
-  position: absolute;
   bottom: 0;
   margin-bottom: 60px;
   color: #3456f3;
@@ -39,21 +39,38 @@
 }
 
 @media screen and (max-width: 1080px) {
+  .not-found {
+    justify-content: center;
+  }
+
   .not-found__button {
-    margin-bottom: 222px;
+    margin-bottom: 0;
+    margin-top: 184px;
   }
 }
 
 @media screen and (max-width: 600px) {
+  .not-found {
+    display: grid;
+    grid-template-rows: 58% 1fr;
+    align-items: end;
+  }
+
+  .not-found__message {
+    margin: 0;
+  }
+
   .not-found__title {
     font-size: 80px;
   }
 
   .not-found__text {
     font-size: 12px;
+    margin-top: 10px;
   }
 
   .not-found__button {
+    margin: 0;
     margin-bottom: 30px;
   }
 }

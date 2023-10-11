@@ -7,6 +7,17 @@ import './Profile.css';
 function Profile() {
   const [onEdit, setOnEdit] = useState(false);
 
+  const username = useInput('', {
+    isEmpty: true,
+    minLength: 2,
+    maxLength: 40,
+  });
+
+  const email = useInput('', {
+    isEmpty: true,
+    isEmailError: false,
+  });
+
   function handleEditClick() {
     setOnEdit(true);
   }
@@ -30,25 +41,60 @@ function Profile() {
             <fieldset className='profile__inputs'>
               <span className='profile__input-title'>Имя</span>
               <label className='profile__input-container'>
+                {username.isTouched && username.isEmpty ? (
+                  <div className='input-error'>Обязательное поле</div>
+                ) : (
+                  !username.isEmpty &&
+                  (username.minLength || username.maxLength) && (
+                    <div className='input-error'>
+                      Введите от 2 до 40 символов
+                    </div>
+                  )
+                )}
                 <input
+                  onChange={(e) => username.onChange(e)}
+                  onBlur={(e) => username.onBlur(e)}
+                  value={username.value}
                   type='text'
-                  className='profile__input'
+                  className={`profile__input ${
+                    !username.isEmpty &&
+                    (username.minLength || username.maxLength)
+                      ? 'profile__input_error'
+                      : ''
+                  }`}
                   placeholder='Виталий'
                 />
+
               </label>
               <span className='profile__input-title'>E-mail</span>
               <label className='profile__input-container'>
                 <input
+                  onChange={(e) => email.onChange(e)}
+                  onBlur={(e) => email.onBlur(e)}
+                  value={email.value}
                   type='email'
-                  className='profile__input'
+                  className={`profile__input ${
+                    !email.isEmpty && email.isEmailError
+                      ? 'profile__input_error'
+                      : ''
+                  }`}
                   placeholder='pochta@yandex.ru'
+                  required
                 />
+                {email.isTouched && email.isEmpty ? (
+                  <div className='input-error input-error_bottom'>Обязательное поле</div>
+                ) : (
+                  !email.isEmpty &&
+                  email.isEmailError && (
+                    <div className='input-error input-error_bottom'>Введите корректный email</div>
+                  )
+                )}
               </label>
             </fieldset>
           </form>
           <div className='profile__submit'>
             {!onEdit && (
-              <div className='profile__button-container'>
+              <>
                 <button
                   onClick={handleEditClick}
                   type='button'
@@ -62,7 +108,7 @@ function Profile() {
                 >
                   Выйти из аккаунта
                 </Link>
-              </div>
+              </>
             )}
             {onEdit && (
               <>

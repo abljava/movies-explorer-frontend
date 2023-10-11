@@ -10,7 +10,8 @@ function SearchForm() {
             className='search__input'
             type='text'
             name='search'
-            placeholder='Фильм'
+            placeholder='Название фильма'
+            required
           />
         </label>
         <button type='submit' className='search__button button'>Найти</button>

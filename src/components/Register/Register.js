@@ -47,7 +47,7 @@ function Register() {
                       : ''
                   }`}
                   id='name-input'
-                  placeholder='Виталий'
+                  placeholder='Введите имя'
                   minLength='2'
                   maxLength='40'
                   required
@@ -77,7 +77,7 @@ function Register() {
                       : ''
                   }`}
                   id='email-input'
-                  placeholder='pochta@yandex.ru'
+                  placeholder='Введите email'
                   minLength='2'
                   maxLength='40'
                   required
@@ -106,7 +106,7 @@ function Register() {
                       : ''
                   }`}
                   id='password-input'
-                  placeholder='••••••••••••••'
+                  placeholder='Введите пароль'
                   minLength='8'
                   maxLength='16'
                   required

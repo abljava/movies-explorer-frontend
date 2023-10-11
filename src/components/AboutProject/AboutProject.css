@@ -1,5 +1,4 @@
 .about-project {
-  height: 608px;
   background: #fff;
   padding-top: 110px;
   padding-bottom: 110px;
@@ -64,7 +63,6 @@
 
 @media screen and (max-width: 1080px) {
   .about-project {
-    height: 585px;
     padding-top: 90px;
     padding-bottom: 90px;
   }
@@ -82,7 +80,6 @@
 
 @media screen and (max-width: 600px) {
   .about-project {
-    height: 641px;
     padding: 70px 18px;
   }
 

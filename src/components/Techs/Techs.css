@@ -1,5 +1,4 @@
 .techs {
-  height: 625px;
   background: #f5f5f5;
   padding-top: 100px;
   padding-bottom: 100px;
@@ -48,7 +47,6 @@
 
 @media screen and (max-width: 1080px) {
   .techs {
-    height: 567px;
     padding-top: 90px;
     padding-bottom: 90px;
   }
@@ -79,8 +77,7 @@
 
 @media screen and (max-width: 600px) {
   .techs {
-    height: 651px;
-    padding: 70px 18px;
+    padding: 60px 18px 70px;
     background: #fff;
   }
 

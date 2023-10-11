@@ -1,24 +1,33 @@
 .search {
-  height: 217px;
   padding-top: 70px;
+  padding-bottom: 118px;
 }
 
 .search__form {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 60px;
+  gap: 21px;
   justify-content: space-between;
   border-bottom: 1px solid #e8e8e8;
   padding-bottom: 13px;
+
 }
 
 .search__input {
+  width: 100%;
   padding: 0;
-  width: 200px;
   border: none;
   outline: none;
   font-size: 28px;
   font-weight: 500;
   line-height: normal;
-  color: #a0a0a0;
+  color: #000000;
+
+  &:focus {
+    outline: none;
+    border: none;
+    background: #e8e8e8;
+  }
 }
 
 .search__button {
@@ -34,15 +43,14 @@
 
 @media screen and (max-width: 1080px) {
   .search {
-    height: 228px;
     padding-top: 80px;
+    padding-bottom: 131px;
   }
 }
 
 @media screen and (max-width: 600px) {
   .search {
-    padding: 84px 4px 0;
-    height: 194px;
+    padding: 84px 4px 91px;
   }
 
   .search__form {

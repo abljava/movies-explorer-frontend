@@ -2,7 +2,6 @@
 }
 
 .movies__more {
-  height: 176px;
   display: flex;
   justify-content: center;
 }
@@ -20,10 +19,9 @@
 
 @media screen and (max-width: 1080px) {
   .movies__more-btn {
-    margin-top: 50px;
+    margin-top: 55px;
   }
 
   .movies__more {
-    height: 166px;
   }
 }

@@ -1,6 +1,7 @@
 .profile {
   display: flex;
   justify-content: center;
+  height: 100%;
 }
 
 .profile__container {
@@ -36,7 +37,7 @@
 .profile__input-container {
   display: flex;
   justify-content: flex-end;
-  width: 100%;
+  position: relative;
   height: 100%;
   background-color: #ffffff;
 }
@@ -54,6 +55,7 @@
 }
 
 .profile__input {
+  width: 100%;
   background-color: #ffffff;
   font-size: 11px;
   font-weight: 400;
@@ -62,6 +64,16 @@
   outline: none;
   padding: 0;
   text-align: end;
+
+  &:focus {
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #3456f3;
+  }
+}
+
+.profile__input_error {
+  color: #FF3055;
 }
 
 .profile__submit {
@@ -71,11 +83,6 @@
   position: relative;
 }
 
-.profile__button-container {
-  display: flex;
-  flex-direction: column;
-}
-
 .profile__button {
   font-size: 13px;
   font-weight: 400;
@@ -83,7 +90,6 @@
 }
 
 .profile__save-button {
-  position: absolute;
   width: 410px;
   height: 45px;
   border-radius: 3px;
@@ -101,6 +107,7 @@
 
 .profile__button_logout {
   padding-top: 16px;
+  font-weight: 500;
   color: #ff3055;
 }
 
@@ -120,7 +127,7 @@
   .profile__container {
     display: flex;
     flex-direction: column;
-    padding-top: 236px;
+    padding-top: 240px;
   }
 
   .profile__form {
@@ -139,7 +146,7 @@
 @media screen and (max-width: 600px) {
   .profile {
     margin: 0 30px;
-    height: calc(100vh - 74px);
+    /* height: calc(100vh - 74px); */
   }
   .profile__container {
     padding: 0;

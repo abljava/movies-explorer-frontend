@@ -29,11 +29,6 @@
   position: relative;
 }
 
-.input-error {
-  position: absolute;
-  color: red;
-}
-
 .login__input-title {
   display: block;
   color: #a0a0a0;
@@ -61,7 +56,7 @@
 }
 
 .login__input_error {
-  color: #FF3055;
+  color: #ff3055;
 }
 
 .login__submit-button {
@@ -78,8 +73,8 @@
 }
 
 .login__submit-button_disabled {
-  background: #F8F8F8;
-  color: #C2C2C2;
+  background: #f8f8f8;
+  color: #c2c2c2;
   cursor: auto;
   &:hover {
     opacity: 1;
@@ -141,5 +136,3 @@
     font-size: 12px;
   }
 }
-
-

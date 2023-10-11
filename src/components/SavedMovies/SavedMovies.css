@@ -1,12 +1,11 @@
 .saved {
-    padding-bottom: 240px;
-    
+
 }
 
 @media screen and (max-width: 1080px) {
     .saved {
         padding-bottom: 150px;
-        
+
     }
 }
 

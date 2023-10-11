@@ -1,9 +1,9 @@
 .header {
+  /* height: 74px; */
   display: flex;
   position: relative;
   justify-content: space-between;
   align-items: center;
-  height: 74px;
   background: #fff;
   background-size: cover;
 }

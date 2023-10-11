@@ -36,14 +36,15 @@
 }
 
 .navigation__signin {
+  width: 76px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 76px;
-  height: 32px;
   border-radius: 3px;
   background: #2be080;
   margin-left: 30px;
+  padding-top: 8px;
+  padding-bottom: 8px;
 
   color: #000;
   font-size: 12px;
@@ -69,8 +70,9 @@
 
   .navigation__signin {
     width: 54px;
-    height: 26px;
     font-size: 10px;
     margin-left: 14px;
+    padding-top: 5px;
+    padding-bottom: 5px;
   }
 }

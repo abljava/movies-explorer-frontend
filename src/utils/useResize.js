@@ -18,4 +18,12 @@ const useResize = () => {
   };
 };
 
+// const window = useResize();
+
+
+// {window.width >= 1280 &&
+//   movies.map((item) => {
+//     return <MoviesCard movie={item} key={item._id} />;
+//   })}
+
 export default useResize;

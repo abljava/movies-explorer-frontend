@@ -1,16 +1,15 @@
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
-import { savedMovies } from '../../utils/savedMovies';
 
 import './SavedMovies.css';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
-function SavedMovies() {
+function SavedMovies({loggedIn, savedMovies}) {
   return (
     <>
       <div className='content'>
-        <Header />
+        <Header loggedIn={loggedIn}/>
         <main className='saved page__centered page__centered_s'>
           <SearchForm />
           <MoviesCardList movies={savedMovies} />

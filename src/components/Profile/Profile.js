@@ -1,94 +1,101 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import useInput from '../../utils/validation';
+import React, { useState, useEffect, useContext } from 'react';
+import CurrentUserContext from '../../contexts/CurrentUserContext';
+import useValidation from '../../utils/validation';
+import { regexEmail } from '../../utils/config';
+
 import Header from '../Header/Header';
 import './Profile.css';
 
-function Profile() {
+function Profile({ loggedIn, handleLogout, onUpdateUser }) {
+  const currentUser = useContext(CurrentUserContext);
   const [onEdit, setOnEdit] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(true);
+  const {
+    handleChange,
+    values,
+    setValues,
+    errors,
+    isInputValid,
+    setIsInputValid,
+    isFormValid,
+    setIsFormValid,
+  } = useValidation();
 
-  const username = useInput('', {
-    isEmpty: true,
-    minLength: 2,
-    maxLength: 40,
-  });
+  // console.log(currentUser);
 
-  const email = useInput('', {
-    isEmpty: true,
-    isEmailError: false,
-  });
+  useEffect(() => {
+    if (currentUser) {
+      setValues(currentUser);
+      setIsInputValid(currentUser);
+      setIsFormValid(true);
+    }
+  }, [currentUser, setValues, setIsInputValid, setIsFormValid]);
 
   function handleEditClick() {
     setOnEdit(true);
+    setIsDisabled(false);
   }
 
-  function handleSaveClick() {
-    document
-      .querySelector('.profile__save-button')
-      .classList.add('profile__save-button_disabled');
-    document
-      .querySelector('.profile__error-message')
-      .classList.remove('profile__error-message_hidden');
+  function handleSaveClick(e) {
+    e.preventDefault();
+    onUpdateUser({
+      name: values.name,
+      email: values.email,
+    });
+    setOnEdit(false);
+    setIsDisabled(true);
   }
 
   return (
     <>
-      <Header />
+      <Header loggedIn={loggedIn} />
       <main className='profile'>
         <section className='profile__container'>
-          <form className='profile__form' name='profile-form'>
-            <h1 className='profile__title'>Привет, Виталий!</h1>
+          <form
+            id='profile'
+            className='profile__form'
+            name='profile-form'
+            noValidate
+          >
+            <h1 className='profile__title'>Привет, {currentUser.name}!</h1>
             <fieldset className='profile__inputs'>
               <span className='profile__input-title'>Имя</span>
               <label className='profile__input-container'>
-                {username.isTouched && username.isEmpty ? (
-                  <div className='input-error'>Обязательное поле</div>
-                ) : (
-                  !username.isEmpty &&
-                  (username.minLength || username.maxLength) && (
-                    <div className='input-error'>
-                      Введите от 2 до 40 символов
-                    </div>
-                  )
-                )}
-                <input
-                  onChange={(e) => username.onChange(e)}
-                  onBlur={(e) => username.onBlur(e)}
-                  value={username.value}
-                  type='text'
-                  className={`profile__input ${
-                    !username.isEmpty &&
-                    (username.minLength || username.maxLength)
-                      ? 'profile__input_error'
-                      : ''
-                  }`}
-                  placeholder='Виталий'
-                />
+                <span className='input-error'>{errors.name}</span>
 
+                <input
+                  disabled={isDisabled}
+                  onChange={handleChange}
+                  value={values.name || ''}
+                  type='text'
+                  name='name'
+                  className={`profile__input ${
+                    !isInputValid.name ? 'profile__input_error' : ''
+                  }`}
+                  placeholder='Введите имя'
+                  minLength={2}
+                  maxLength={30}
+                  required
+                />
               </label>
               <span className='profile__input-title'>E-mail</span>
               <label className='profile__input-container'>
                 <input
-                  onChange={(e) => email.onChange(e)}
-                  onBlur={(e) => email.onBlur(e)}
-                  value={email.value}
+                  disabled={isDisabled}
+                  onChange={handleChange}
+                  value={values.email || ''}
                   type='email'
+                  name='email'
                   className={`profile__input ${
-                    !email.isEmpty && email.isEmailError
-                      ? 'profile__input_error'
-                      : ''
+                    !isInputValid.email ? 'profile__input_error' : ''
                   }`}
-                  placeholder='pochta@yandex.ru'
+                  placeholder='Введите email'
+                  pattern={regexEmail}
                   required
                 />
-                {email.isTouched && email.isEmpty ? (
-                  <div className='input-error input-error_bottom'>Обязательное поле</div>
-                ) : (
-                  !email.isEmpty &&
-                  email.isEmailError && (
-                    <div className='input-error input-error_bottom'>Введите корректный email</div>
-                  )
-                )}
+                <span className='input-error input-error_bottom'>
+                  {errors.email}
+                </span>
               </label>
             </fieldset>
           </form>
@@ -102,23 +109,27 @@ function Profile() {
                 >
                   Редактировать
                 </button>
-                <Link
-                  to='/'
+                <button
+                  onClick={handleLogout}
                   className='profile__button profile__button_logout button'
                 >
                   Выйти из аккаунта
-                </Link>
+                </button>
               </>
             )}
             {onEdit && (
               <>
-                <div className='profile__error-message profile__error-message_hidden'>
+                <span className='profile__error-message profile__error-message_hidden'>
                   При обновлении профиля произошла ошибка.
-                </div>
+                </span>
                 <button
+                  disabled={!isFormValid}
+                  form='profile'
                   onClick={handleSaveClick}
                   type='submit'
-                  className='profile__button profile__save-button button'
+                  className={`profile__button profile__save-button button ${
+                    !isFormValid ? 'profile__save-button_disabled' : ''
+                  }`}
                 >
                   Сохранить
                 </button>

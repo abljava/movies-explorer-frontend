@@ -6,15 +6,14 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import './Movies.css';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
-import { movies } from '../../utils/movies';
 
-function Movies() {
+function Movies({loggedIn, movies}) {
   const location = useLocation();
 
   return (
     <>
       <div className='content'>
-        <Header />
+        <Header loggedIn={loggedIn}/>
         <main
           className={`movies page__centered ${
             location.pathname === '/' ? '' : 'page__centered_s'

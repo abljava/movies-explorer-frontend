@@ -2,6 +2,7 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import useResize from '../../utils/useResize';
+import { moviesApiUrl } from '../../utils/config';
 import './MoviesCardList.css';
 
 function MoviesCardList({ movies }) {

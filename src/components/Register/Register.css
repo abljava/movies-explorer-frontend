@@ -55,10 +55,16 @@
   color: #FF3055;
 }
 
+.register__submit {
+  margin-top: 152px;
+}
+
 .register__submit-button {
   width: 396px;
   height: 45px;
-  margin-top: 152px;
+  position: relative;
+
+
   border-radius: 3px;
   background: #3456f3;
   color: #fff;

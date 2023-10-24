@@ -8,6 +8,7 @@
 }
 
 .profile__form {
+  width: 410px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,8 +23,9 @@
 }
 
 .profile__inputs {
+  width: 100%;
   display: grid;
-  grid-template-columns: repeat(2, 205px);
+  grid-template-columns: 100px 1fr;
   grid-template-rows: repeat(2, 46px);
   row-gap: 1px;
   align-items: center;

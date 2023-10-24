@@ -1,0 +1,142 @@
+.nav-mobile {
+  display: flex;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.3s, opacity 0.3s linear;
+  z-index: 3;
+}
+
+.nav-mobile_opened {
+  visibility: visible;
+  opacity: 1;
+}
+
+.nav-mobile__wrapper {
+  display: grid;
+  grid-template-rows: 159px 122px auto;
+
+  width: 520px;
+  height: 100vh;
+  background: #fff;
+
+  position: fixed;
+  right: 0;
+  top: 0;
+}
+
+.nav-mobile__menu {
+}
+
+.nav-mobile__close-btn {
+  width: 33px;
+  height: 33px;
+  background-image: url(../../images/nav-mobile-close.svg);
+  background-size: contain;
+  justify-self: self-end;
+  margin: 22.44px 22.44px 0 0;
+}
+
+.nav-mobile__items {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.nav-mobile__item {
+  color: #000000;
+  padding-bottom: 4px;
+}
+
+.nav-mobile__item_active {
+  border-bottom-style: solid;
+}
+
+.nav-mobile__account {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.nav-mobile__account-container {
+  width: 100px;
+  height: 32px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 7px;
+  border-radius: 40px;
+  background: #ffffff;
+  box-shadow: 0px 3px 14px 0px rgba(0, 0, 0, 0.08);
+  margin-bottom: 90px;
+  transition: opacity 0.3s ease-in-out;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.nav-mobile__account-text {
+  margin: 0;
+  color: black;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 0.92; /* 92.308% */
+}
+
+.nav-mobile__account-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 50px;
+  background-image: url(../../images/nav-profile-icon.svg);
+  background-color: #f9f9f9;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-right: 3px;
+}
+
+.nav-mobile_unauth {
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (max-width: 600px) {
+  .nav-mobile__wrapper {
+    width: 320px;
+    grid-template-rows: 145px 122px auto;
+  }
+
+  .nav-mobile__items {
+    gap: 24px;
+  }
+
+  .nav-mobile__close-btn {
+    margin: 13.44px 13.44px 0 0;
+
+  }
+
+  .nav-mobile__account-container {
+    margin-bottom: 46px;
+  }
+
+}
+
+/* .header_dark .nav-mobile__item {
+  color: white;
+}
+
+.header_dark .nav-mobile__account {
+  background-color: #2be080;
+} */

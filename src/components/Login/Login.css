@@ -1,0 +1,138 @@
+.login {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.login__container {
+  padding-top: 10px;
+}
+
+.login__title {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: normal;
+  margin: 40px 0 16px;
+}
+
+.login__inputs {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.login__input-container {
+  position: relative;
+}
+
+.login__input-title {
+  display: block;
+  color: #a0a0a0;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: normal;
+  padding-top: 24px;
+  margin: 0;
+}
+
+.login__input {
+  width: 100%;
+  color: #000;
+  border: 0;
+  border-bottom: 1px solid #e8e8e8;
+  padding: 5px 0 10px;
+
+  font-size: 14px;
+  line-height: normal;
+  &:focus {
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #3456f3;
+  }
+}
+
+.login__input_error {
+  color: #ff3055;
+}
+
+.login__submit-button {
+  width: 396px;
+  height: 45px;
+  margin-top: 221px;
+  border-radius: 3px;
+  background: #3456f3;
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.login__submit-button_disabled {
+  background: #f8f8f8;
+  color: #c2c2c2;
+  cursor: auto;
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.login__text {
+  color: #a0a0a0;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.login__signup-link {
+  color: #3456f3;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: normal;
+}
+
+@media screen and (max-width: 600px) {
+  .login__container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 56px 0 18px;
+  }
+
+  .login__items {
+    width: 260px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .login__title {
+    margin: 50px 0 0 0;
+  }
+
+  .login__form {
+    width: 100%;
+    align-self: flex-start;
+    padding-top: 56px;
+  }
+
+  .login__submit-button {
+    margin: 0;
+    width: 260px;
+    font-size: 12px;
+  }
+
+  .login__text,
+  .login__signup-link {
+    font-size: 12px;
+  }
+}

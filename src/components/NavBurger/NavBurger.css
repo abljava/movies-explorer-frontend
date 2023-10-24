@@ -1,0 +1,27 @@
+.burger {
+  display: none;
+}
+
+.burger__button {
+  width: 44px;
+  height: 44px;
+  background-image: url(../../images/nav-mobile-burger.svg);
+  background-size: cover;
+}
+
+.burger__button_black {
+  background-image: url(../../images/nav-mobile-burger-black.svg);
+}
+
+@media screen and (max-width: 800px) {
+  .burger {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .burger__button {
+    width: 37px;
+    height: 37px;
+  }
+}

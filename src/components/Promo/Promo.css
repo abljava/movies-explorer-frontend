@@ -1,0 +1,126 @@
+.promo {
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+
+  background: #073042;
+  padding-top: 75px;
+  padding-bottom: 75px;
+}
+
+.promo__text {
+  display: flex;
+  flex-direction: column;
+  width: 640px;
+  text-align: left;
+  color: #fff;
+  font-style: normal;
+}
+
+.promo__header {
+  color: #fff;
+  font-size: 50px;
+  font-weight: 400;
+  line-height: 1.16;
+  margin: 0;
+}
+
+.promo__description {
+  width: 310px;
+  opacity: 0.5;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: normal;
+  margin: 36px 0 0;
+}
+
+.promo__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 129px;
+  height: 36px;
+  margin-top: 146px;
+  border-radius: 3px;
+  border: 1px solid #fff;
+  opacity: 0.6;
+
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.33;
+}
+
+.promo__image {
+  width: 310px;
+  height: 304px;
+  background-image: url(../../images/promo-logo.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  align-self: flex-start;
+}
+
+@media screen and (max-width: 1080px) {
+  .promo {
+    flex-direction: column-reverse;
+    align-items: center;
+    padding-top: 140px;
+  }
+
+  .promo__text {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .promo__header {
+    font-size: 40px;
+    line-height: 1.25;
+    margin-top: 48px;
+  }
+
+  .promo__button {
+    margin-top: 92px;
+  }
+
+  .promo__description {
+    width: 260px;
+    margin-top: 22px;
+  }
+
+  .promo__image {
+    align-self: auto;
+  }
+}
+
+@media screen and (max-width: 660px) {
+  .promo {
+    padding-top: 70px;
+    padding-bottom: 30px;
+  }
+
+  .promo__text {
+    width: auto;
+    padding-top: 44px;
+  }
+
+  .promo__header {
+    font-size: 30px;
+    line-height: 1.26;
+    letter-spacing: -1.2px;
+    margin-top: 0;
+  }
+
+  .promo__description {
+    width: auto;
+    padding: 0 16px 0;
+  }
+
+  .promo__image {
+    width: 210px;
+    height: 206px;
+  }
+
+  .promo__button {
+    margin-top: 82px;
+  }
+}

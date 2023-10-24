@@ -1,0 +1,26 @@
+.header {
+  /* height: 74px; */
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  background-size: cover;
+}
+
+.header_dark {
+  background: #073042;
+}
+
+@media screen and (max-width: 1080px) {
+  .header {
+    padding: 0 30px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .header {
+    padding: 0 14px;
+  }
+}
+

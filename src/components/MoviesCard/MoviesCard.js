@@ -2,46 +2,37 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import getTimeFromMins from '../../utils/durationConverter';
 import { moviesApiUrl } from '../../utils/config';
-
 import './MoviesCard.css';
-import cardButton from '../../images/card-button.svg';
-import cardButtonLike from '../../images/card-button-like.svg';
-import cardButtonDelete from '../../images/card-button-delete.svg';
 
-function MoviesCard({ movie }) {
+function MoviesCard({ movie, onSave, onDelete, savedMovies }) {
   const location = useLocation();
-  const movieImgUrl = `${moviesApiUrl}${movie.image.url}`
-
+  const isSaved = savedMovies.some((item) => item.movieId === movie.id)
+  const movieImgUrl =     typeof movie.image === 'string'
+      ? movie.image
+      : `${moviesApiUrl}${movie.image.url}`;
 
   return (
     <li className='card'>
-      <a href={movie.trailerLink} target="_blank" rel="noreferrer">
-      <img src={movieImgUrl} alt={movie.name} className='card__img' />
+      <a href={movie.trailerLink} target='_blank' rel='noreferrer'>
+        <img src={movieImgUrl} alt={movie.name} className='card__img' />
       </a>
 
       <div className='card__info'>
         <div className='card__description'>
           <h2 className='card__name'>{movie.nameRU}</h2>
           {location.pathname === '/movies' && (
-            <button type='button' className='card__button-container button'>
-              <img
-                src={cardButton}
-                alt='кнопка лайка карточки'
-                className='card__button'
-              />
-            </button>
+            <button
+              onClick={() => onSave(movie)}
+              type='button'
+              className={`card__button button ${isSaved ? 'card__button_active' : 'card__button_like'} `}
+            ></button>
           )}
           {location.pathname === '/saved-movies' && (
             <button
+              onClick={() => onDelete(movie._id)}
               type='button'
-              className='card__button-container card__button-container_hidden button'
-            >
-              <img
-                src={cardButtonDelete}
-                alt='кнопка удаления карточки'
-                className='card__button'
-              />
-            </button>
+              className='card__button card__button_delete button'
+            ></button>
           )}
         </div>
         <p className='card__duration'>{getTimeFromMins(movie.duration)}</p>

@@ -6,7 +6,7 @@ import { regexEmail } from '../../utils/config';
 import Header from '../Header/Header';
 import './Profile.css';
 
-function Profile({ loggedIn, handleLogout, onUpdateUser }) {
+function Profile({ loggedIn, handleLogout, onUpdateUser, isSuccess, isError }) {
   const currentUser = useContext(CurrentUserContext);
   const [onEdit, setOnEdit] = useState(false);
   const [isDisabled, setIsDisabled] = useState(true);
@@ -119,9 +119,15 @@ function Profile({ loggedIn, handleLogout, onUpdateUser }) {
             )}
             {onEdit && (
               <>
-                <span className='profile__error-message profile__error-message_hidden'>
+                {isError && <span className={`profile__message profile__message_error`}>
                   При обновлении профиля произошла ошибка.
-                </span>
+                </span>}
+                {isSuccess && <span className={`profile__message`}>
+                  Изменения успешно сохранены.
+                </span>}
+                {/* <span className='profile__error-message profile__error-message_hidden'>
+                  При обновлении профиля произошла ошибка.
+                </span> */}
                 <button
                   disabled={!isFormValid}
                   form='profile'

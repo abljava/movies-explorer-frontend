@@ -1,30 +1,17 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import useValidation from '../../utils/validation';
-import { login } from '../../utils/authApi';
 import { regexEmail } from '../../utils/config';
 
 import './Login.css';
 
-function Login({ handleLogin }) {
-  const navigate = useNavigate();
-
+function Login({ handleLogin, isError }) {
   const { handleChange, values, errors, isInputValid, isFormValid } =
     useValidation();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    login(values.email, values.password)
-      .then((data) => {
-        if (data.token) {
-          localStorage.setItem('token', data.token);
-          handleLogin();
-          navigate('/movies', { replace: true });
-        }
-      })
-      .catch((err) => {
-        console.log(`Ошибка авторизации: `, err);
-      });
+    handleLogin(values.email, values.password);
   };
 
   return (
@@ -50,7 +37,9 @@ function Login({ handleLogin }) {
                     value={values.email || ''}
                     name='email'
                     type='email'
-                    className={`login__input ${!isInputValid.email ? 'login__input_error' : ''} `}
+                    className={`login__input ${
+                      !isInputValid.email ? 'login__input_error' : ''
+                    } `}
                     id='email-input'
                     placeholder='Введите email'
                     minLength={2}
@@ -67,7 +56,9 @@ function Login({ handleLogin }) {
                     value={values.password || ''}
                     name='password'
                     type='password'
-                    className={`login__input ${!isInputValid.password ? 'login__input_error' : ''} `}
+                    className={`login__input ${
+                      !isInputValid.password ? 'login__input_error' : ''
+                    } `}
                     id='password-input'
                     placeholder='Введите пароль'
                     minLength={8}
@@ -88,6 +79,7 @@ function Login({ handleLogin }) {
                 !isFormValid ? 'login__submit-button_disabled' : ''
               }`}
             >
+              <span className='input-error input-error_top'>{isError}</span>
               Войти
             </button>
             <p className='login__text'>

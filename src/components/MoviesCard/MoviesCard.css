@@ -26,20 +26,21 @@
   margin: 0;
 }
 
-.card__button-container {
-  opacity: 1;
-}
-
-.card__button-container_hidden {
-  opacity: 0;
-  &:hover {
-    opacity: 1;
-  }
-}
-
 .card__button {
   width: 24px;
   height: 24px;
+}
+
+.card__button_like {
+  background-image: url(../../images/card-button.svg);
+}
+
+.card__button_active {
+  background-image: url(../../images/card-button-like.svg);
+}
+
+.card__button_delete {
+  background-image: url(../../images/card-button-delete.svg);
 }
 
 .card__duration {

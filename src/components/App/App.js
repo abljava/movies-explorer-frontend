@@ -13,17 +13,17 @@ import SavedMovies from '../SavedMovies/SavedMovies';
 import Movies from '../Movies/Movies';
 import NotFound from '../NotFound/NotFound';
 import { mainApi } from '../../utils/mainApi';
-import { moviesApi } from '../../utils/moviesApi';
+import { moviesApiUrl } from '../../utils/config';
+import * as authApi from '../../utils/authApi';
 
 function App() {
   const navigate = useNavigate();
 
   const [currentUser, setCurrentUser] = useState({});
+  const [loggedIn, setLoggedIn] = useState(!!localStorage.token); //приводим к булевому типу
   const [isSuccess, setIsSuccess] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [isLoading, setIsLoading] = useState(false); //preloader
-  const [movies, setMovies] = useState([]);
-  const [serverErr, setServerErr] = useState('')
+  const [isError, setIsError] = useState('');
+  const [savedMovies, setSavedMovies] = useState([]);
 
   const tokenCheck = () => {
     if (localStorage.token) {
@@ -32,7 +32,6 @@ function App() {
         .then((res) => {
           if (res) {
             setLoggedIn(true);
-            navigate('/', { replace: true });
           }
         })
         .catch((err) => {
@@ -47,11 +46,13 @@ function App() {
 
   useEffect(() => {
     if (loggedIn) {
-      mainApi
-        .getUserInfo(localStorage.token)
-        .then((userData) => {
+      Promise.all([
+        mainApi.getUserInfo(localStorage.token),
+        mainApi.getSavedMovies(localStorage.token),
+      ])
+        .then(([userData, userMovies]) => {
           setCurrentUser(userData);
-          // console.log(currentUser);
+          setSavedMovies(userMovies);
         })
         .catch((err) => {
           console.log(`Ошибка получения данных пользователя: `, err);
@@ -59,25 +60,32 @@ function App() {
     }
   }, [loggedIn]);
 
-  useEffect(() => {
-    if (loggedIn) {
-      moviesApi
-        .getMovies(localStorage.token)
-        .then((movies) => {
-          setMovies(movies);
-        })
-        .catch((err) => {
-          console.log(`Ошибка получения фильмов: `, err);
-        });
-    }
-  }, [loggedIn]);
-
-  function handleRegistration() {
-    setIsSuccess(true);
+  function handleLogin(email, password) {
+    authApi
+      .login(email, password)
+      .then((data) => {
+        if (data.token) {
+          localStorage.setItem('token', data.token);
+          setLoggedIn(true);
+          navigate('/movies', { replace: true });
+        }
+      })
+      .catch((err) => {
+        setIsError(`Ошибка авторизации: ${err}`);
+        console.log(`Ошибка авторизации: `, err);
+      });
   }
 
-  function handleLogin() {
-    setLoggedIn(true);
+  function handleRegistration(values) {
+    authApi
+      .register(values.name, values.email, values.password)
+      .then((res) => {
+        handleLogin(values.email, values.password);
+      })
+      .catch((err) => {
+        setIsError(`Ошибка регистрации: ${err}`);
+        console.log(`Ошибка регистрации: `, err);
+      });
   }
 
   function handleLogout() {
@@ -87,8 +95,43 @@ function App() {
   }
 
   function handleUpdateUser(data) {
-    mainApi.editUserInfo(data, localStorage.token).then((data) => {
-      setCurrentUser(data);
+    mainApi
+      .editUserInfo(data, localStorage.token)
+      .then((data) => {
+        setCurrentUser(data);
+        setIsSuccess(true);
+      })
+      .catch((err) => {
+        setIsSuccess(false);
+        setIsError(`Ошибка при редактировании профиля: ${err}`);
+        console.log(`Ошибка при редактировании профиля: ${err}`);
+      });
+  }
+
+  function handleSaveClick(savedMovie) {
+    const isSaved = savedMovies.find((item) => item.movieId === savedMovie.id);
+    // console.log(`isSaved :`, isSaved);
+    // console.log(`savedMovie :`, savedMovie);
+
+    if (isSaved) {
+      handleDeleteClick(isSaved._id, localStorage.token);
+    } else {
+      mainApi
+        .saveMovie(savedMovie, localStorage.token)
+        .then((newMovie) => {
+          setSavedMovies((movies) => [newMovie, ...movies]);
+        })
+        .catch((err) => {
+          console.log(`Ошибка сохранения фильма :`, err);
+        });
+    }
+  }
+
+  function handleDeleteClick(movieId) {
+    mainApi.deleteMovie(movieId, localStorage.token).then(() => {
+      setSavedMovies((movies) =>
+        movies.filter((movie) => movie._id !== movieId)
+      );
     });
   }
 
@@ -105,14 +148,20 @@ function App() {
                   <ProtectedRoute
                     element={Movies}
                     loggedIn={loggedIn}
-                    movies={movies}
+                    savedMovies={savedMovies}
+                    onSave={handleSaveClick}
                   />
                 }
               ></Route>
               <Route
                 path='/saved-movies'
                 element={
-                  <ProtectedRoute element={SavedMovies} loggedIn={loggedIn} />
+                  <ProtectedRoute
+                    element={SavedMovies}
+                    loggedIn={loggedIn}
+                    savedMovies={savedMovies}
+                    onDelete={handleDeleteClick}
+                  />
                 }
               ></Route>
               <Route
@@ -123,16 +172,23 @@ function App() {
                     loggedIn={loggedIn}
                     handleLogout={handleLogout}
                     onUpdateUser={handleUpdateUser}
+                    isSuccess={isSuccess}
+                    isError={isError}
                   />
                 }
               ></Route>
               <Route
                 path='/signin'
-                element={<Login handleLogin={handleLogin} />}
+                element={<Login handleLogin={handleLogin} isError={isError} />}
               ></Route>
               <Route
                 path='/signup'
-                element={<Register handleRegistration={handleRegistration} />}
+                element={
+                  <Register
+                    handleRegistration={handleRegistration}
+                    isError={isError}
+                  />
+                }
               ></Route>
               <Route path='*' element={<NotFound />}></Route>
             </Routes>

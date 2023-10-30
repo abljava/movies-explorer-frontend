@@ -113,15 +113,24 @@
   color: #ff3055;
 }
 
-.profile__error-message {
+.profile__message {
   position: absolute;
   top: -20px;
-  color: #ff004c;
   text-align: center;
   font-size: 11px;
 }
 
-.profile__error-message_hidden {
+.profile__message_error {
+  color: #ff004c;
+
+
+}
+
+.profile__message_success {
+
+}
+
+.profile__message_hidden {
   visibility: hidden;
 }
 

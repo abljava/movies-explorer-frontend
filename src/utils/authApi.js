@@ -1,10 +1,10 @@
 export const BASE_URL = 'http://localhost:3005';
 
-export function register(name, email, password) {
-  function getResponseData(res) {
-    return res.ok ? res.json() : Promise.reject(res.status);
-  }
+function getResponseData(res) {
+  return res.ok ? res.json() : Promise.reject(res.status);
+}
 
+export function register(name, email, password) {
   return fetch(`${BASE_URL}/signup`, {
     method: 'POST',
     headers: {
@@ -26,14 +26,8 @@ export function login(email, password) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ email, password }),
-  })
-    .then((res) => {
-      if (res.status === 200) {
-        return res.json();
-      }
-    })
-    .then((res) => {
-      return res;
-    })
-    .catch((err) => console.log(`error login`, err));
+  }).then((res) => {
+    console.log(`res 1 ==>`, res);
+    return getResponseData(res);
+  });
 }

@@ -1,31 +1,18 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { register } from '../../utils/authApi';
+import React  from 'react';
+import { Link } from 'react-router-dom';
+
 import useValidation from '../../utils/validation';
 import { regexEmail } from '../../utils/config';
 
 import './Register.css';
 
-function Register({ handleRegistration, serverErr, setServerErr }) {
-  const navigate = useNavigate();
+function Register({ handleRegistration, isError }) {
   const { handleChange, values, errors, isInputValid, isFormValid } =
     useValidation();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    register(values.name, values.email, values.password)
-      .then((res) => {
-        if (res.ok) {
-          handleRegistration();
-          navigate('/movies', { replace: true });
-        }
-        console.log(`res 2 ==>`, res);
-      })
-      .catch((err) => {
-        setServerErr(err)
-        console.log(`error registering, ${err}`);
-        // ошибку сервера в компонент Register
-      });
+    handleRegistration(values)
   };
 
   return (
@@ -108,7 +95,7 @@ function Register({ handleRegistration, serverErr, setServerErr }) {
               !isFormValid ? 'register__submit-button_disabled' : ''
             }`}
           >
-            <span className='input-error input-error_top'>{serverErr}</span>
+            <span className='input-error input-error_top'>{isError}</span>
             Зарегистрироваться
           </button>
           <p className='register__text'>

@@ -62,6 +62,7 @@
 .login__submit-button {
   width: 396px;
   height: 45px;
+  position: relative;
   margin-top: 221px;
   border-radius: 3px;
   background: #3456f3;

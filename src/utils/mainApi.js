@@ -1,9 +1,13 @@
+import { moviesApiUrl } from '../utils/config';
+
 class MainApi {
   constructor(params) {
     this._baseUrl = params.baseUrl;
   }
 
-  _getResponseData(res) {return res.ok ? res.json() : Promise.reject(res.status)}
+  _getResponseData(res) {
+    return res.ok ? res.json() : Promise.reject(res.status);
+  }
 
   getUserInfo(token) {
     return fetch(`${this._baseUrl}/users/me`, {
@@ -27,6 +31,48 @@ class MainApi {
     }).then((res) => this._getResponseData(res));
   }
 
+  getSavedMovies(token) {
+    return fetch(`${this._baseUrl}/movies`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then((res) => this._getResponseData(res));
+  }
+
+  saveMovie(movie, token) {
+    return fetch(`${this._baseUrl}/movies`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        nameRU: movie.nameRU,
+        country: movie.country,
+        director: movie.director,
+        duration: movie.duration,
+        year: movie.year,
+        description: movie.description,
+        image: `${moviesApiUrl}${movie.image.url}`,
+        trailerLink: movie.trailerLink,
+        thumbnail: `${moviesApiUrl}${movie.image.url}`,
+        movieId: movie.id,
+        nameEN: movie.nameEN,
+      }),
+    }).then((res) => this._getResponseData(res));
+  }
+
+  deleteMovie(movieId, token) {
+    return fetch(`${this._baseUrl}/movies/${movieId} `, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    }).then((res) => this._getResponseData(res));
+  }
+
+
 }
 
 const mainApi = new MainApi({
@@ -34,8 +80,6 @@ const mainApi = new MainApi({
 });
 
 export { mainApi };
-
-
 
 // export const BASE_URL = 'http://localhost:3005';
 

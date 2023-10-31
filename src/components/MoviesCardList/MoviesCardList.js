@@ -14,12 +14,17 @@ import {
 } from '../../utils/config';
 import './MoviesCardList.css';
 
-function MoviesCardList({ movies, savedMovies, isLoading, onSave, onDelete }) {
+function MoviesCardList({
+  movies,
+  savedMovies,
+  isLoading,
+  onSave,
+  onDelete,
+  isSearchResult,
+}) {
   const location = useLocation();
-  const [counter, setCounter] = useState('');
+  const [counter, setCounter] = useState(''); //counter - число карточек для отрисовки
   const screenSize = useResize();
-
-  // console.log(`screenSize :`, screenSize);
 
   //брейкпоинты для отрисовки разного количества карточек
   const windowLarge = window.innerWidth > 1280;
@@ -76,50 +81,52 @@ function MoviesCardList({ movies, savedMovies, isLoading, onSave, onDelete }) {
     setCounter(counter + countCards().toAdd);
   }
 
-
   return (
     <section>
-      {isLoading
-      ? <Preloader />
-      : (location.pathname === '/movies')
-        ? (<>
-            <ul className='cardlist'>
-              {movies.slice(0, counter).map((item) => {
-                return (
-                  <MoviesCard
+      {isLoading ? (
+        <Preloader />
+      ) : location.pathname === '/movies' && isSearchResult ? (
+        <>
+          <ul className='cardlist'>
+            {movies.slice(0, counter).map((item) => {
+              return (
+                <MoviesCard
                   movie={item}
                   key={item.id}
                   onSave={onSave}
-                  savedMovies={savedMovies} />
-                );
-              })}
-            </ul>
-
-          </>)
-          : (<ul className='cardlist'>
-
-              {savedMovies.map((item) => {
-                return (
-                  <MoviesCard
-                  movie={item}
-                  key={item._id}
-                  onDelete={onDelete}
-                  savedMovies={savedMovies} />
-                );
-              })}
-        </ul>)
-      }
+                  savedMovies={savedMovies}
+                />
+              );
+            })}
+          </ul>
+        </>
+      ) : isSearchResult ? (
+        <ul className='cardlist'>
+          {savedMovies.map((item) => {
+            return (
+              <MoviesCard
+                movie={item}
+                key={item._id}
+                onDelete={onDelete}
+                savedMovies={savedMovies}
+              />
+            );
+          })}
+        </ul>
+      ) : (
+        <span className='cardlist__not-found'>Ничего не найдено</span>
+      )}
       <div className='cardlist__more'>
-              {location.pathname === '/movies' && counter < movies.length && (
-                <button
-                  onClick={loadMoreCards}
-                  type='button'
-                  className='cardlist__more-btn button'
-                >
-                  Ещё
-                </button>
-              )}
-            </div>
+        {location.pathname === '/movies' && counter < movies.length && (
+          <button
+            onClick={loadMoreCards}
+            type='button'
+            className='cardlist__more-btn button'
+          >
+            Ещё
+          </button>
+        )}
+      </div>
     </section>
   );
 }

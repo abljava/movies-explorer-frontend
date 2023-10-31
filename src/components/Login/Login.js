@@ -1,11 +1,20 @@
-import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import useValidation from '../../utils/validation';
 import { regexEmail } from '../../utils/config';
 
 import './Login.css';
 
-function Login({ handleLogin, isError }) {
+function Login({ handleLogin, isError, setIsError }) {
+  const location = useLocation();
+
+  //сбрасываем сообщение ошибки/успеха при смене роута
+  useEffect(() => {
+    if (location.pathname === '/signin') {
+      setIsError('');
+    }
+  }, [location, setIsError]);
+
   const { handleChange, values, errors, isInputValid, isFormValid } =
     useValidation();
 

@@ -1,18 +1,28 @@
-import React  from 'react';
-import { Link } from 'react-router-dom';
+import React, {useEffect} from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 import useValidation from '../../utils/validation';
 import { regexEmail } from '../../utils/config';
 
 import './Register.css';
 
-function Register({ handleRegistration, isError }) {
+function Register({ handleRegistration, isError, setIsError }) {
+  const location = useLocation();
+
+  //сбрасываем сообщение ошибки/успеха при смене роута
+  useEffect(() => {
+    if (location.pathname === '/signup') {
+      setIsError('');
+    }
+  }, [location, setIsError]);
+
+
   const { handleChange, values, errors, isInputValid, isFormValid } =
     useValidation();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleRegistration(values)
+    handleRegistration(values);
   };
 
   return (

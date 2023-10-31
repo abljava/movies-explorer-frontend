@@ -18,8 +18,8 @@ function Movies({ loggedIn, savedMovies, onSave }) {
   const [isQuery, setIsQuery] = useState(false);
   const [placeholder, setPlaceholder] = useState('Фильм');
   const [filteredMovies, setFliteredMovies] = useState([]);
-  const [isSearchResult, setIsSearchResult] = useState(true);
   const [isError, setIsError] = useState('');
+  const [isSearchResult, setIsSearchResult] = useState(true);
 
   //получаем значения предыдущего поиска из localStorage
   useEffect(() => {
@@ -76,9 +76,13 @@ function Movies({ loggedIn, savedMovies, onSave }) {
     }
     setFliteredMovies(searchResult);
     localStorage.setItem('filteredMovies', JSON.stringify(searchResult));
-    // searchResult.length === 0 ? setIsSearchResult(false) : setIsSearchResult(true);
+    searchResult.length > 0 ? setIsSearchResult(true) : setIsSearchResult(false)
   };
 
+
+  console.log(`isSearchResult :`, isSearchResult);
+
+  
   function handleSubmit(e) {
     e.preventDefault();
     if (!isQuery) {
@@ -118,17 +122,14 @@ function Movies({ loggedIn, savedMovies, onSave }) {
             isRequest={isQuery}
             placeholder={placeholder}
           />
-          {isError && <div className='movies__not-found '>error</div>}
+          {isError && <div className='movies__error '>{isError}</div>}
           <MoviesCardList
             movies={filteredMovies}
             savedMovies={savedMovies}
             isLoading={isLoading}
             onSave={onSave}
+            isSearchResult={isSearchResult}
           />
-          {/* {filteredMovies.length === 0
-            ? <div className='movies__not-found '>Ничего не найдено</div>
-            : <MoviesCardList movies={filteredMovies} isLoading={isLoading} />
-          } */}
         </main>
       </div>
       <Footer />

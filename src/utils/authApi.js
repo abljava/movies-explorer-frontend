@@ -13,7 +13,6 @@ export function register(name, email, password) {
     },
     body: JSON.stringify({ name, email, password }),
   }).then((res) => {
-    console.log(`res 1 ==>`, res);
     return getResponseData(res);
   });
 }

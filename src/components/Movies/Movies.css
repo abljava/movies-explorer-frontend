@@ -1,13 +1,13 @@
 .movies {
 }
 
-.movies__not-found {
+.movies__error {
   text-align: center;
-  font-size: 24px;
+  font-size: 20px;
   line-height: normal;
 }
 
-.movies__not-found_hidden {
+.movies__error_hidden {
   display: none;
 }
 

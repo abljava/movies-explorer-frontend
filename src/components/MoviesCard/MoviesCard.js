@@ -7,7 +7,7 @@ import './MoviesCard.css';
 function MoviesCard({ movie, onSave, onDelete, savedMovies }) {
   const location = useLocation();
   const isSaved = savedMovies.some((item) => item.movieId === movie.id)
-  const movieImgUrl =     typeof movie.image === 'string'
+  const movieImgUrl = typeof movie.image === 'string'
       ? movie.image
       : `${moviesApiUrl}${movie.image.url}`;
 

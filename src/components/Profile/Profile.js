@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { useLocation } from 'react-router-dom';
+
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 import useValidation from '../../utils/validation';
 import { regexEmail } from '../../utils/config';
@@ -6,10 +8,22 @@ import { regexEmail } from '../../utils/config';
 import Header from '../Header/Header';
 import './Profile.css';
 
-function Profile({ loggedIn, handleLogout, onUpdateUser, isSuccess, isError }) {
+function Profile({
+  loggedIn,
+  handleLogout,
+  onUpdateUser,
+  isError,
+  setIsError,
+  isSuccess,
+  setIsSuccess,
+}) {
+  const location = useLocation();
+
   const currentUser = useContext(CurrentUserContext);
   const [onEdit, setOnEdit] = useState(false);
   const [isDisabled, setIsDisabled] = useState(true);
+  const [isDataChanged, setIsDataChanged] = useState(false);
+
   const {
     handleChange,
     values,
@@ -21,8 +35,7 @@ function Profile({ loggedIn, handleLogout, onUpdateUser, isSuccess, isError }) {
     setIsFormValid,
   } = useValidation();
 
-  // console.log(currentUser);
-
+  //устанавливаем данные текущего пользователя в форму
   useEffect(() => {
     if (currentUser) {
       setValues(currentUser);
@@ -31,9 +44,26 @@ function Profile({ loggedIn, handleLogout, onUpdateUser, isSuccess, isError }) {
     }
   }, [currentUser, setValues, setIsInputValid, setIsFormValid]);
 
+  //проверяем, были ли изменены данные пользователя
+  useEffect(() => {
+    const dataChanged =
+      values.name !== currentUser.name || values.email !== currentUser.email;
+    dataChanged ? setIsDataChanged(true) : setIsDataChanged(false);
+  }, [values, currentUser]);
+
+  //сбрасываем сообщение ошибки/успеха при смене роута
+  useEffect(() => {
+    if (location.pathname === '/profile') {
+      setIsError('');
+      setIsSuccess(false);
+    }
+  }, [location, setIsError, setIsSuccess]);
+
   function handleEditClick() {
     setOnEdit(true);
     setIsDisabled(false);
+    setIsError('');
+    setIsSuccess(false);
   }
 
   function handleSaveClick(e) {
@@ -100,6 +130,16 @@ function Profile({ loggedIn, handleLogout, onUpdateUser, isSuccess, isError }) {
             </fieldset>
           </form>
           <div className='profile__submit'>
+            {isError && (
+              <span className={`profile__message profile__message_error`}>
+                {isError}
+              </span>
+            )}
+            {isSuccess && (
+              <span className={`profile__message`}>
+                Изменения успешно сохранены.
+              </span>
+            )}
             {!onEdit && (
               <>
                 <button
@@ -119,22 +159,15 @@ function Profile({ loggedIn, handleLogout, onUpdateUser, isSuccess, isError }) {
             )}
             {onEdit && (
               <>
-                {isError && <span className={`profile__message profile__message_error`}>
-                  При обновлении профиля произошла ошибка.
-                </span>}
-                {isSuccess && <span className={`profile__message`}>
-                  Изменения успешно сохранены.
-                </span>}
-                {/* <span className='profile__error-message profile__error-message_hidden'>
-                  При обновлении профиля произошла ошибка.
-                </span> */}
                 <button
-                  disabled={!isFormValid}
+                  disabled={!isFormValid || !isDataChanged}
                   form='profile'
                   onClick={handleSaveClick}
                   type='submit'
                   className={`profile__button profile__save-button button ${
-                    !isFormValid ? 'profile__save-button_disabled' : ''
+                    !isFormValid || !isDataChanged
+                      ? 'profile__save-button_disabled'
+                      : ''
                   }`}
                 >
                   Сохранить

@@ -13,7 +13,6 @@ import SavedMovies from '../SavedMovies/SavedMovies';
 import Movies from '../Movies/Movies';
 import NotFound from '../NotFound/NotFound';
 import { mainApi } from '../../utils/mainApi';
-import { moviesApiUrl } from '../../utils/config';
 import * as authApi from '../../utils/authApi';
 
 function App() {
@@ -21,8 +20,8 @@ function App() {
 
   const [currentUser, setCurrentUser] = useState({});
   const [loggedIn, setLoggedIn] = useState(!!localStorage.token); //приводим к булевому типу
-  const [isSuccess, setIsSuccess] = useState(false);
   const [isError, setIsError] = useState('');
+  const [isSuccess, setIsSuccess] = useState(false);
   const [savedMovies, setSavedMovies] = useState([]);
 
   const tokenCheck = () => {
@@ -71,7 +70,7 @@ function App() {
         }
       })
       .catch((err) => {
-        setIsError(`Ошибка авторизации: ${err}`);
+        setIsError(`Ошибка авторизации ${err}`);
         console.log(`Ошибка авторизации: `, err);
       });
   }
@@ -83,7 +82,7 @@ function App() {
         handleLogin(values.email, values.password);
       })
       .catch((err) => {
-        setIsError(`Ошибка регистрации: ${err}`);
+        setIsError(`Ошибка регистрации ${err}`);
         console.log(`Ошибка регистрации: `, err);
       });
   }
@@ -103,7 +102,7 @@ function App() {
       })
       .catch((err) => {
         setIsSuccess(false);
-        setIsError(`Ошибка при редактировании профиля: ${err}`);
+        setIsError(`При обновлении профиля произошла ошибка. ${err}`);
         console.log(`Ошибка при редактировании профиля: ${err}`);
       });
   }
@@ -173,13 +172,21 @@ function App() {
                     handleLogout={handleLogout}
                     onUpdateUser={handleUpdateUser}
                     isSuccess={isSuccess}
+                    setIsSuccess={setIsSuccess}
                     isError={isError}
+                    setIsError={setIsError}
                   />
                 }
               ></Route>
               <Route
                 path='/signin'
-                element={<Login handleLogin={handleLogin} isError={isError} />}
+                element={
+                  <Login
+                    handleLogin={handleLogin}
+                    isError={isError}
+                    setIsError={setIsError}
+                  />
+                }
               ></Route>
               <Route
                 path='/signup'
@@ -187,6 +194,7 @@ function App() {
                   <Register
                     handleRegistration={handleRegistration}
                     isError={isError}
+                    setIsError={setIsError}
                   />
                 }
               ></Route>

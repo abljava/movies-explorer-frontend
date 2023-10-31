@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 import './SearchForm.css';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
@@ -10,7 +10,7 @@ function SearchForm({
   isRequest,
   placeholder,
   onCheckbox,
-  isChecked
+  isChecked,
 }) {
   return (
     <form className='search' onSubmit={handleSubmit} noValidate>
@@ -30,9 +30,8 @@ function SearchForm({
           Найти
         </button>
       </div>
-      {/* {isRequest && <span className="input-error">Нужно ввести ключевое слово</span>} */}
 
-      <FilterCheckbox onCheckbox={onCheckbox} isChecked={isChecked}/>
+      <FilterCheckbox onCheckbox={onCheckbox} isChecked={isChecked} />
     </form>
   );
 }

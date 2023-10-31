@@ -4,7 +4,18 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 import Preloader from '../Preloader/Preloader';
 import useResize from '../../utils/useResize';
 import './MoviesCardList.css';
-import { showCardsLarge, showCardsMedium, showCardsSmall, showCardsXsmall, addCardLarge, addCardMedium, addCardSmall,
+import {
+  showCardsLarge,
+  showCardsMedium,
+  showCardsSmall,
+  showCardsXsmall,
+  addCardLarge,
+  addCardMedium,
+  addCardSmall,
+  windowLarge,
+  windowMedium,
+  windowSmall,
+  windowXsmall,
 } from '../../utils/config';
 
 function MoviesCardList({
@@ -15,9 +26,9 @@ function MoviesCardList({
   onDelete,
   isSearchResult,
 }) {
-  const { windowLarge, windowMedium, windowSmall, windowXsmall } = useResize();
   const location = useLocation();
   const [counter, setCounter] = useState(''); //counter - число карточек для отрисовки
+  const screenSize = useResize();
 
   //считаем, сколько карточек показывать и добавлять
   const countCards = useCallback(() => {
@@ -46,23 +57,23 @@ function MoviesCardList({
     if (location.pathname === '/movies') {
       setCounter(countCards().toShow);
       function handleResize() {
-        if (windowLarge) {
+        if (window.innerWidth > 1280) {
           setCounter(countCards().toShow);
         }
-        if (windowMedium) {
+        if (window.innerWidth <= 1279 && window.innerWidth > 929) {
           setCounter(countCards().toShow);
         }
-        if (windowSmall) {
+        if (window.innerWidth <= 929 && window.innerWidth > 629) {
           setCounter(countCards().toShow);
         }
-        if (windowXsmall) {
+        if (window.innerWidth <= 629) {
           setCounter(countCards().toShow);
         }
       }
       window.addEventListener('resize', handleResize);
       return () => window.removeEventListener('resize', handleResize);
     }
-  }, [countCards, location, windowLarge, windowMedium, windowSmall, windowXsmall ]);
+  }, [countCards, location.pathname]);
 
   function loadMoreCards() {
     setCounter(counter + countCards().toAdd);
@@ -70,22 +81,26 @@ function MoviesCardList({
 
   return (
     <section>
-      <ul className='cardlist'>
-        {isLoading ? (
-          <Preloader />
-        ) : location.pathname === '/movies' && isSearchResult ? (
-          movies.slice(0, counter).map((item) => {
-            return (
-              <MoviesCard
-                movie={item}
-                key={item.id}
-                onSave={onSave}
-                savedMovies={savedMovies}
-              />
-            );
-          })
-        ) : isSearchResult ? (
-          savedMovies.map((item) => {
+      {isLoading ? (
+        <Preloader />
+      ) : location.pathname === '/movies' && isSearchResult ? (
+        <>
+          <ul className='cardlist'>
+            {movies.slice(0, counter).map((item) => {
+              return (
+                <MoviesCard
+                  movie={item}
+                  key={item.id}
+                  onSave={onSave}
+                  savedMovies={savedMovies}
+                />
+              );
+            })}
+          </ul>
+        </>
+      ) : isSearchResult ? (
+        <ul className='cardlist'>
+          {savedMovies.map((item) => {
             return (
               <MoviesCard
                 movie={item}
@@ -94,11 +109,11 @@ function MoviesCardList({
                 savedMovies={savedMovies}
               />
             );
-          })
-        ) : (
-          <span className='cardlist__not-found'>Ничего не найдено</span>
-        )}
-      </ul>
+          })}
+        </ul>
+      ) : (
+        <span className='cardlist__not-found'>Ничего не найдено</span>
+      )}
       <div className='cardlist__more'>
         {location.pathname === '/movies' && counter < movies.length && (
           <button
@@ -115,3 +130,11 @@ function MoviesCardList({
 }
 
 export default MoviesCardList;
+
+// return (
+//   <section>
+//     <ul className='cardlist'>
+//       {movies.map((item) => { return <MoviesCard movie={item} key={item._id} />})}
+//     </ul>
+//   </section>
+// );

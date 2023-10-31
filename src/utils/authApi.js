@@ -26,7 +26,6 @@ export function login(email, password) {
     },
     body: JSON.stringify({ email, password }),
   }).then((res) => {
-    console.log(`res 1 ==>`, res);
     return getResponseData(res);
   });
 }

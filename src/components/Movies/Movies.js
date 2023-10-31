@@ -46,6 +46,7 @@ function Movies({ loggedIn, savedMovies, onSave }) {
           setMovies(movies);
           setIsLoading(false);
           onFilter(inputValue, isChecked, movies);
+          setIsError('')
         })
         .catch((err) => {
           setIsError(
@@ -82,7 +83,7 @@ function Movies({ loggedIn, savedMovies, onSave }) {
 
   console.log(`isSearchResult :`, isSearchResult);
 
-  
+
   function handleSubmit(e) {
     e.preventDefault();
     if (!isQuery) {

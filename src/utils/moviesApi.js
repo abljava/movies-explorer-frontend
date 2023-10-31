@@ -1,6 +1,4 @@
-//  https://api.nomoreparties.co/beatfilm-movies
-
-import { moviesApiUrl } from './config';
+import { MOVIES_API } from './config';
 
 class MoviesApi {
   constructor(params) {
@@ -12,13 +10,12 @@ class MoviesApi {
   }
 
   getMovies() {
-    return fetch(`${this._baseUrl}`)
-    .then((res) => this._getResponseData(res));
+    return fetch(`${this._baseUrl}`).then((res) => this._getResponseData(res));
   }
 }
 
 const moviesApi = new MoviesApi({
-  baseUrl: `${moviesApiUrl}/beatfilm-movies`,
+  baseUrl: `${MOVIES_API}/beatfilm-movies`,
 });
 
 export { moviesApi };

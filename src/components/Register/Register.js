@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 import useValidation from '../../utils/validation';
-import { regexEmail } from '../../utils/config';
+import { REGEX_EMAIL } from '../../utils/config';
 
 import './Register.css';
 
@@ -70,7 +70,7 @@ function Register({ handleRegistration, isError, setIsError }) {
                   }`}
                   id='email-input'
                   placeholder='Введите email'
-                  pattern={regexEmail}
+                  pattern={REGEX_EMAIL}
                   required
                 />
                 <span className='input-error'>{errors.email}</span>

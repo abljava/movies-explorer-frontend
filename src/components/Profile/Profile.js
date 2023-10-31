@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 import useValidation from '../../utils/validation';
-import { regexEmail } from '../../utils/config';
+import { REGEX_EMAIL } from '../../utils/config';
 
 import Header from '../Header/Header';
 import './Profile.css';
@@ -120,7 +120,7 @@ function Profile({
                     !isInputValid.email ? 'profile__input_error' : ''
                   }`}
                   placeholder='Введите email'
-                  pattern={regexEmail}
+                  pattern={REGEX_EMAIL}
                   required
                 />
                 <span className='input-error input-error_bottom'>

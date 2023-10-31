@@ -1,15 +1,16 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import getTimeFromMins from '../../utils/durationConverter';
-import { moviesApiUrl } from '../../utils/config';
+import { MOVIES_API } from '../../utils/config';
 import './MoviesCard.css';
 
 function MoviesCard({ movie, onSave, onDelete, savedMovies }) {
   const location = useLocation();
-  const isSaved = savedMovies.some((item) => item.movieId === movie.id)
-  const movieImgUrl = typeof movie.image === 'string'
+  const isSaved = savedMovies.some((item) => item.movieId === movie.id);
+  const movieImgUrl =
+    typeof movie.image === 'string'
       ? movie.image
-      : `${moviesApiUrl}${movie.image.url}`;
+      : `${MOVIES_API}${movie.image.url}`;
 
   return (
     <li className='card'>
@@ -24,7 +25,9 @@ function MoviesCard({ movie, onSave, onDelete, savedMovies }) {
             <button
               onClick={() => onSave(movie)}
               type='button'
-              className={`card__button button ${isSaved ? 'card__button_active' : 'card__button_like'} `}
+              className={`card__button button ${
+                isSaved ? 'card__button_active' : 'card__button_like'
+              } `}
             ></button>
           )}
           {location.pathname === '/saved-movies' && (

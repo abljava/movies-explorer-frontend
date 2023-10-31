@@ -46,7 +46,7 @@ function Movies({ loggedIn, savedMovies, onSave }) {
           setMovies(movies);
           setIsLoading(false);
           onFilter(inputValue, isChecked, movies);
-          setIsError('')
+          setIsError('');
         })
         .catch((err) => {
           setIsError(
@@ -77,12 +77,12 @@ function Movies({ loggedIn, savedMovies, onSave }) {
     }
     setFliteredMovies(searchResult);
     localStorage.setItem('filteredMovies', JSON.stringify(searchResult));
-    searchResult.length > 0 ? setIsSearchResult(true) : setIsSearchResult(false)
+    searchResult.length > 0
+      ? setIsSearchResult(true)
+      : setIsSearchResult(false);
   };
 
-
   console.log(`isSearchResult :`, isSearchResult);
-
 
   function handleSubmit(e) {
     e.preventDefault();

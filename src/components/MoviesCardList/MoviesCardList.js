@@ -4,7 +4,14 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 import Preloader from '../Preloader/Preloader';
 import useResize from '../../utils/useResize';
 import './MoviesCardList.css';
-import { showCardsLarge, showCardsMedium, showCardsSmall, showCardsXsmall, addCardLarge, addCardMedium, addCardSmall,
+import {
+  showCardsLarge,
+  showCardsMedium,
+  showCardsSmall,
+  showCardsXsmall,
+  addCardLarge,
+  addCardMedium,
+  addCardSmall,
 } from '../../utils/config';
 
 function MoviesCardList({
@@ -62,7 +69,14 @@ function MoviesCardList({
       window.addEventListener('resize', handleResize);
       return () => window.removeEventListener('resize', handleResize);
     }
-  }, [countCards, location, windowLarge, windowMedium, windowSmall, windowXsmall ]);
+  }, [
+    countCards,
+    location,
+    windowLarge,
+    windowMedium,
+    windowSmall,
+    windowXsmall,
+  ]);
 
   function loadMoreCards() {
     setCounter(counter + countCards().toAdd);
@@ -70,11 +84,11 @@ function MoviesCardList({
 
   return (
     <section>
-      <ul className='cardlist'>
-        {isLoading ? (
-          <Preloader />
-        ) : location.pathname === '/movies' && isSearchResult ? (
-          movies.slice(0, counter).map((item) => {
+      {isLoading ? (
+        <Preloader />
+      ) : location.pathname === '/movies' && isSearchResult ? (
+        <ul className='cardlist'>
+          {movies.slice(0, counter).map((item) => {
             return (
               <MoviesCard
                 movie={item}
@@ -83,9 +97,11 @@ function MoviesCardList({
                 savedMovies={savedMovies}
               />
             );
-          })
-        ) : isSearchResult ? (
-          savedMovies.map((item) => {
+          })}
+        </ul>
+      ) : isSearchResult ? (
+        <ul className='cardlist'>
+          {savedMovies.map((item) => {
             return (
               <MoviesCard
                 movie={item}
@@ -94,11 +110,11 @@ function MoviesCardList({
                 savedMovies={savedMovies}
               />
             );
-          })
-        ) : (
-          <span className='cardlist__not-found'>Ничего не найдено</span>
-        )}
-      </ul>
+          })}
+        </ul>
+      ) : (
+        <span className='cardlist__not-found'>Ничего не найдено</span>
+      )}
       <div className='cardlist__more'>
         {location.pathname === '/movies' && counter < movies.length && (
           <button

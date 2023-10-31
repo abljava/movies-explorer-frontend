@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import useValidation from '../../utils/validation';
-import { regexEmail } from '../../utils/config';
+import { REGEX_EMAIL } from '../../utils/config';
 
 import './Login.css';
 
@@ -53,7 +53,7 @@ function Login({ handleLogin, isError, setIsError }) {
                     placeholder='Введите email'
                     minLength={2}
                     maxLength={30}
-                    pattern={regexEmail}
+                    pattern={REGEX_EMAIL}
                     required
                   />
                   <span className='input-error'>{errors.email}</span>

@@ -1,4 +1,4 @@
-export const BASE_URL = 'http://localhost:3005';
+export const BASE_URL = 'https://api.movies-explorer.app.nomoredomainsicu.ru';
 
 function getResponseData(res) {
   return res.ok ? res.json() : Promise.reject(res.status);

@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import { moviesApi } from '../../utils/moviesApi';
+import { shortMovieDuration } from '../../utils/config';
 
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
@@ -72,7 +73,7 @@ function Movies({ loggedIn, savedMovies, onSave }) {
         const searchText =
           item.nameRU.toLowerCase().includes(inputValue.toLowerCase()) ||
           item.nameEN.toLowerCase().includes(inputValue.toLowerCase());
-        return isChecked ? searchText && item.duration <= 40 : searchText;
+        return isChecked ? searchText && item.duration <= shortMovieDuration : searchText;
       });
     }
     setFliteredMovies(searchResult);

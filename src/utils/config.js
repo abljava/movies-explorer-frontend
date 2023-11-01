@@ -2,6 +2,8 @@ export const REGEX_EMAIL = '^\\S+@\\S+\\.\\S+$';
 export const MOVIES_API = 'https://api.nomoreparties.co';
 export const BASE_URL = 'http://localhost:3005';
 
+export const shortMovieDuration = 40;
+
 // количество отображаемых карточек для разных размеров экрана
 export const showCardsLarge = 16;
 export const showCardsMedium = 12;

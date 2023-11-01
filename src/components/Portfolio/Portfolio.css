@@ -51,7 +51,7 @@
 .portfolio__item_narrow {
   width: 100%;
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   padding-bottom: 30px;
 }
 

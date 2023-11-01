@@ -1,20 +1,35 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import useInput from '../../utils/validation';
+import React, { useEffect } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import useValidation from '../../utils/validation';
+import { REGEX_EMAIL } from '../../utils/config';
 
 import './Login.css';
 
-function Login() {
-  const email = useInput('', {
-    isEmpty: true,
-    isEmailError: false,
-  });
+function Login({ handleLogin, isError, setIsError }) {
+  const location = useLocation();
+  const navigate = useNavigate();
 
-  const password = useInput('', {
-    isEmpty: true,
-    minLength: 8,
-    maxLength: 16,
-  });
+  //сбрасываем сообщение ошибки/успеха при смене роута
+  useEffect(() => {
+    if (location.pathname === '/signin') {
+      setIsError('');
+    }
+  }, [location, setIsError]);
+
+  //залогиненный пользователь не может попасть на страницу логина
+  useEffect(() => {
+    if (localStorage.token) {
+      navigate('/movies', { replace: true });
+    }
+  }, [navigate]);
+
+  const { handleChange, values, errors, isInputValid, isFormValid } =
+    useValidation();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleLogin(values.email, values.password);
+  };
 
   return (
     <>
@@ -25,79 +40,63 @@ function Login() {
               <div className='logo' />
             </Link>
             <h1 className='login__title'>Рады видеть!</h1>
-            <form className='login__form' name='signin'>
+            <form
+              onSubmit={handleSubmit}
+              id='login'
+              className='login__form'
+              name='signin'
+            >
               <fieldset className='login__inputs'>
                 <label className='login__input-container'>
                   <span className='login__input-title'>E-mail</span>
                   <input
-                    onChange={(e) => email.onChange(e)}
-                    onBlur={(e) => email.onBlur(e)}
-                    value={email.value}
+                    onChange={handleChange}
+                    value={values.email || ''}
                     name='email'
                     type='email'
                     className={`login__input ${
-                      !email.isEmpty && email.isEmailError
-                        ? 'login__input_error'
-                        : ''
-                    }`}
+                      !isInputValid.email ? 'login__input_error' : ''
+                    } `}
                     id='email-input'
                     placeholder='Введите email'
-                    minLength='2'
-                    maxLength='40'
+                    minLength={2}
+                    maxLength={30}
+                    pattern={REGEX_EMAIL}
                     required
                   />
-                  {email.isTouched && email.isEmpty ? (
-                    <div className='input-error'>Обязательное поле</div>
-                  ) : (
-                    !email.isEmpty &&
-                    email.isEmailError && (
-                      <div className='input-error'>
-                        Введите корректный email
-                      </div>
-                    )
-                  )}
+                  <span className='input-error'>{errors.email}</span>
                 </label>
                 <label className='login__input-container'>
                   <span className='login__input-title'>Пароль</span>
                   <input
-                    onChange={(e) => password.onChange(e)}
-                    onBlur={(e) => password.onBlur(e)}
-                    value={password.value}
+                    onChange={handleChange}
+                    value={values.password || ''}
                     name='password'
                     type='password'
                     className={`login__input ${
-                      password.minLength ? 'login__input_error' : ''
-                    }`}
+                      !isInputValid.password ? 'login__input_error' : ''
+                    } `}
                     id='password-input'
                     placeholder='Введите пароль'
-                    minLength='8'
-                    maxLength='16'
+                    minLength={8}
+                    maxLength={16}
                     required
                   />
-                  {password.isTouched && password.isEmpty ? (
-                    <div className='input-error'>Обязательное поле</div>
-                  ) : (
-                    !password.isEmpty &&
-                    (password.minLength || password.maxLength) && (
-                      <div className='input-error'>
-                        Введите от 8 до 16 символов
-                      </div>
-                    )
-                  )}
+                  <span className='input-error'>{errors.password}</span>
                 </label>
               </fieldset>
             </form>
           </div>
           <div className='login__submit'>
             <button
-              disabled={!email.isInputValid || !password.isInputValid}
+              form='login'
+              disabled={!isFormValid}
               type='submit'
               className={`button login__submit-button ${
-                !email.isInputValid || !password.isInputValid
-                  ? 'login__submit-button_disabled'
-                  : ''
+                !isFormValid ? 'login__submit-button_disabled' : ''
               }`}
             >
+              <span className='input-error input-error_top'>{isError}</span>
               Войти
             </button>
             <p className='login__text'>

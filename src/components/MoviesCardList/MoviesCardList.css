@@ -1,5 +1,6 @@
-.cardlist {
+.cardlist__list {
   display: grid;
+  position: relative;
   grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
   gap: 35px 20px;
   margin: 0;
@@ -7,9 +8,42 @@
   list-style-type: none;
 }
 
+.cardlist__more {
+  display: flex;
+  justify-content: center;
+}
+
+.cardlist__more-btn {
+  width: 320px;
+  height: 36px;
+  border-radius: 6px;
+  background: #f9f9f9;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: normal;
+  margin: 60px 0 80px;
+}
+
+.cardlist__not-found {
+  display: block;
+  text-align: center;
+  font-size: 20px;
+  line-height: normal;
+}
+
 @media screen and (max-width: 1080px) {
-  .cardlist {
+  .cardlist__list {
     gap: 26px 30px;
+  }
+
+  .cardlist__more-btn {
+    margin-top: 55px;
+  }
+}
+
+@media screen and (max-width: 649px) {
+  .cardlist__list {
+    grid-template-columns:  repeat(auto-fill, minmax(300px, 1fr));
   }
 }
 

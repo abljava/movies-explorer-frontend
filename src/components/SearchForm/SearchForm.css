@@ -41,6 +41,16 @@
   line-height: 1.63; /* 163.636% */
 }
 
+.search__warning {
+  font-size: 28px;
+  font-weight: 500;
+
+}
+
+.search__warning_hidden {
+  display: none;
+}
+
 @media screen and (max-width: 1080px) {
   .search {
     padding-top: 80px;

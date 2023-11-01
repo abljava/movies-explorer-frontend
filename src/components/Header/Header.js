@@ -5,9 +5,8 @@ import NavMobile from '../NavMobile/NavMobile';
 import NavBurger from '../NavBurger/NavBurger';
 import './Header.css';
 
-function Header() {
+function Header({ loggedIn }) {
   const location = useLocation();
-  const [loggedIn, setLoggedIn] = useState(true);
   const [isNavMobileOpen, setIsNavMobileOpen] = useState(false);
 
   function handleBurgerClick() {

@@ -1,6 +1,16 @@
 .movies {
 }
 
+.movies__error {
+  text-align: center;
+  font-size: 20px;
+  line-height: normal;
+}
+
+.movies__error_hidden {
+  display: none;
+}
+
 .movies__more {
   display: flex;
   justify-content: center;

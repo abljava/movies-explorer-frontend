@@ -1,48 +1,134 @@
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import MoviesCard from '../MoviesCard/MoviesCard';
+import Preloader from '../Preloader/Preloader';
 import useResize from '../../utils/useResize';
 import './MoviesCardList.css';
+import {
+  showCardsLarge,
+  showCardsMedium,
+  showCardsSmall,
+  showCardsXsmall,
+  addCardLarge,
+  addCardMedium,
+  addCardSmall,
+} from '../../utils/config';
 
-function MoviesCardList({ movies }) {
-  const window = useResize();
+function MoviesCardList({
+  movies,
+  savedMovies,
+  isLoading,
+  onSave,
+  onDelete,
+  isSearchResult,
+}) {
+  const { windowLarge, windowMedium, windowSmall, windowXsmall } = useResize();
   const location = useLocation();
+  const [counter, setCounter] = useState(''); //counter - число карточек для отрисовки
+
+  //считаем, сколько карточек показывать и добавлять
+  const countCards = useCallback(() => {
+    const cardsNumber = {};
+    if (windowLarge) {
+      cardsNumber.toShow = showCardsLarge;
+      cardsNumber.toAdd = addCardLarge;
+    }
+    if (windowMedium) {
+      cardsNumber.toShow = showCardsMedium;
+      cardsNumber.toAdd = addCardMedium;
+    }
+    if (windowSmall) {
+      cardsNumber.toShow = showCardsSmall;
+      cardsNumber.toAdd = addCardSmall;
+    }
+    if (windowXsmall) {
+      cardsNumber.toShow = showCardsXsmall;
+      cardsNumber.toAdd = addCardSmall;
+    }
+    return cardsNumber;
+  }, [windowLarge, windowMedium, windowSmall, windowXsmall]);
+
+  //устанавливаем кол-во карточек в зависимости от размера экрана
+  useEffect(() => {
+    if (location.pathname === '/movies') {
+      setCounter(countCards().toShow);
+      function handleResize() {
+        if (windowLarge) {
+          setCounter(countCards().toShow);
+        }
+        if (windowMedium) {
+          setCounter(countCards().toShow);
+        }
+        if (windowSmall) {
+          setCounter(countCards().toShow);
+        }
+        if (windowXsmall) {
+          setCounter(countCards().toShow);
+        }
+      }
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }
+  }, [
+    countCards,
+    location,
+    windowLarge,
+    windowMedium,
+    windowSmall,
+    windowXsmall,
+    movies
+  ]);
+
+  function loadMoreCards() {
+    setCounter(counter + countCards().toAdd);
+  }
 
   return (
-    <section>
-      <ul className='cardlist'>
-        {window.width >= 1280 &&
-          movies.map((item) => {
-            return <MoviesCard movie={item} key={item._id} />;
+    <section className='cardlist'>
+      {isLoading ? (
+        <Preloader />
+      ) : location.pathname === '/movies' && isSearchResult ? (
+        <ul className='cardlist__list'>
+          {movies.slice(0, counter).map((item) => {
+            return (
+              <MoviesCard
+                movie={item}
+                key={item.id}
+                onSave={onSave}
+                savedMovies={savedMovies}
+              />
+            );
           })}
-        {window.width <= 1279 &&
-          window.width > 500 &&
-          movies.slice(0, 8).map((item) => {
-            return <MoviesCard movie={item} key={item._id} />;
+        </ul>
+      ) : isSearchResult ? (
+        <ul className='cardlist__list'>
+          {savedMovies.map((item) => {
+            return (
+              <MoviesCard
+                movie={item}
+                key={item._id}
+                onDelete={onDelete}
+                savedMovies={savedMovies}
+              />
+            );
           })}
-        {window.width <= 499 &&
-          location.pathname === '/movies' &&
-          movies.slice(0, 5).map((item) => {
-            return <MoviesCard movie={item} key={item._id} />;
-          })}
-        {window.width <= 499 &&
-          location.pathname === '/saved-movies' &&
-          movies.slice(0, 2).map((item) => {
-            return <MoviesCard movie={item} key={item._id} />;
-          })}
-      </ul>
+        </ul>
+      ) : (
+        <span className='cardlist__not-found'>Ничего не найдено</span>
+      )}
+      <div className='cardlist__more'>
+        {location.pathname === '/movies' && counter < movies.length && (
+          <button
+            onClick={loadMoreCards}
+            type='button'
+            className='cardlist__more-btn button'
+          >
+            Ещё
+          </button>
+        )}
+      </div>
     </section>
   );
 }
 
 export default MoviesCardList;
-
-// return (
-//   <section>
-//     <ul className='cardlist'>
-//       {movies.map((item) => {
-//         return <MoviesCard movie={item} key={item._id} />;
-//       })}
-//     </ul>
-//   </section>
-// );

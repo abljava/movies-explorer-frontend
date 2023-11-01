@@ -76,6 +76,7 @@ function MoviesCardList({
     windowMedium,
     windowSmall,
     windowXsmall,
+    movies
   ]);
 
   function loadMoreCards() {
@@ -83,11 +84,11 @@ function MoviesCardList({
   }
 
   return (
-    <section>
+    <section className='cardlist'>
       {isLoading ? (
         <Preloader />
       ) : location.pathname === '/movies' && isSearchResult ? (
-        <ul className='cardlist'>
+        <ul className='cardlist__list'>
           {movies.slice(0, counter).map((item) => {
             return (
               <MoviesCard
@@ -100,7 +101,7 @@ function MoviesCardList({
           })}
         </ul>
       ) : isSearchResult ? (
-        <ul className='cardlist'>
+        <ul className='cardlist__list'>
           {savedMovies.map((item) => {
             return (
               <MoviesCard

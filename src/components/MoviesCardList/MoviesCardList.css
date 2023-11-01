@@ -1,5 +1,6 @@
-.cardlist {
+.cardlist__list {
   display: grid;
+  position: relative;
   grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
   gap: 35px 20px;
   margin: 0;
@@ -31,7 +32,7 @@
 }
 
 @media screen and (max-width: 1080px) {
-  .cardlist {
+  .cardlist__list {
     gap: 26px 30px;
   }
 
@@ -39,3 +40,10 @@
     margin-top: 55px;
   }
 }
+
+@media screen and (max-width: 649px) {
+  .cardlist__list {
+    grid-template-columns:  repeat(auto-fill, minmax(300px, 1fr));
+  }
+}
+

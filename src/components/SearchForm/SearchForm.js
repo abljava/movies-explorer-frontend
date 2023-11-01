@@ -7,7 +7,6 @@ function SearchForm({
   handleSubmit,
   handleInputChange,
   inputValue,
-  isRequest,
   placeholder,
   onCheckbox,
   isChecked,

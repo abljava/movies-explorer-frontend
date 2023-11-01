@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import useValidation from '../../utils/validation';
 import { REGEX_EMAIL } from '../../utils/config';
@@ -8,6 +8,7 @@ import './Register.css';
 
 function Register({ handleRegistration, isError, setIsError }) {
   const location = useLocation();
+  const navigate = useNavigate();
 
   //сбрасываем сообщение ошибки/успеха при смене роута
   useEffect(() => {
@@ -16,6 +17,12 @@ function Register({ handleRegistration, isError, setIsError }) {
     }
   }, [location, setIsError]);
 
+  //залогиненный пользователь не может попасть на страницу регистрации
+  useEffect(() => {
+    if (localStorage.token) {
+      navigate('/movies', { replace: true });
+    }
+  }, [navigate]);
 
   const { handleChange, values, errors, isInputValid, isFormValid } =
     useValidation();

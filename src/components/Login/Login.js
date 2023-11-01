@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useValidation from '../../utils/validation';
 import { REGEX_EMAIL } from '../../utils/config';
 
@@ -7,6 +7,7 @@ import './Login.css';
 
 function Login({ handleLogin, isError, setIsError }) {
   const location = useLocation();
+  const navigate = useNavigate();
 
   //сбрасываем сообщение ошибки/успеха при смене роута
   useEffect(() => {
@@ -14,6 +15,13 @@ function Login({ handleLogin, isError, setIsError }) {
       setIsError('');
     }
   }, [location, setIsError]);
+
+  //залогиненный пользователь не может попасть на страницу логина
+  useEffect(() => {
+    if (localStorage.token) {
+      navigate('/movies', { replace: true });
+    }
+  }, [navigate]);
 
   const { handleChange, values, errors, isInputValid, isFormValid } =
     useValidation();

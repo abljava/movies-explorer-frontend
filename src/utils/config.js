@@ -1,6 +1,6 @@
 export const REGEX_EMAIL = '^\\S+@\\S+\\.\\S+$';
 export const MOVIES_API = 'https://api.nomoreparties.co';
-export const BASE_URL = 'http://localhost:3005';
+export const BASE_URL = 'https://api.movies-explorer.app.nomoredomainsicu.ru';
 
 export const shortMovieDuration = 40;
 

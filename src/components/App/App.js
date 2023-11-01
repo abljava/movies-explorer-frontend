@@ -102,7 +102,7 @@ function App() {
       })
       .catch((err) => {
         setIsSuccess(false);
-        setIsError(`При обновлении профиля произошла ошибка. ${err}`);
+        setIsError(`Ошибка при редактировании профиля ${err}`);
         console.log(`Ошибка при редактировании профиля: ${err}`);
       });
   }

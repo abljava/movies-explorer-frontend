@@ -1,16 +1,20 @@
-import { MOVIES_API } from '../utils/config';
+import { BASE_URL } from '../utils/config';
 
 class MainApi {
   constructor(params) {
-    this._BASE_URL = params.BASE_URL;
+    this._baseUrl = params.baseUrl;
   }
 
-  _getResponseData(res) {
-    return res.ok ? res.json() : Promise.reject(res.status);
+  _getResponseData = async (res)  => {
+    if(!res.ok) {
+      const data = await res.json()
+      throw new Error (data.message)
+    }
+    return res.json()
   }
 
   getUserInfo(token) {
-    return fetch(`${this._BASE_URL}/users/me`, {
+    return fetch(`${this._baseUrl}/users/me`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -18,7 +22,7 @@ class MainApi {
   }
 
   editUserInfo(data, token) {
-    return fetch(`${this._BASE_URL}/users/me`, {
+    return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
       headers: {
         Authorization: `Bearer ${token}`,
@@ -32,7 +36,7 @@ class MainApi {
   }
 
   getSavedMovies(token) {
-    return fetch(`${this._BASE_URL}/movies`, {
+    return fetch(`${this._baseUrl}/movies`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -40,7 +44,7 @@ class MainApi {
   }
 
   saveMovie(movie, token) {
-    return fetch(`${this._BASE_URL}/movies`, {
+    return fetch(`${this._baseUrl}/movies`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -53,9 +57,9 @@ class MainApi {
         duration: movie.duration,
         year: movie.year,
         description: movie.description,
-        image: `${MOVIES_API}${movie.image.url}`,
+        image: `${BASE_URL}${movie.image.url}`,
         trailerLink: movie.trailerLink,
-        thumbnail: `${MOVIES_API}${movie.image.url}`,
+        thumbnail: `${BASE_URL}${movie.image.url}`,
         movieId: movie.id,
         nameEN: movie.nameEN,
       }),
@@ -63,7 +67,7 @@ class MainApi {
   }
 
   deleteMovie(movieId, token) {
-    return fetch(`${this._BASE_URL}/movies/${movieId} `, {
+    return fetch(`${this._baseUrl}/movies/${movieId} `, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -74,7 +78,7 @@ class MainApi {
 }
 
 const mainApi = new MainApi({
-  BASE_URL: 'https://api.movies-explorer.app.nomoredomainsicu.ru',
+  baseUrl: BASE_URL,
 });
 
 export { mainApi };

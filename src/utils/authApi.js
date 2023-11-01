@@ -1,7 +1,11 @@
-export const BASE_URL = 'https://api.movies-explorer.app.nomoredomainsicu.ru';
+import { BASE_URL } from '../utils/config';
 
-function getResponseData(res) {
-  return res.ok ? res.json() : Promise.reject(res.status);
+const getResponseData = async (res)  => {
+  if(!res.ok) {
+    const data = await res.json()
+    throw new Error (data.message)
+  }
+  return res.json()
 }
 
 export function register(name, email, password) {

@@ -37,6 +37,18 @@ function Movies({ loggedIn, savedMovies, onSave }) {
     }
   }, []);
 
+  useEffect(() => {
+    const keyEnter = (e) => {
+      if (e.key === 'Enter') {
+        handleSubmit(e);
+      }
+    };
+    document.addEventListener('keydown', keyEnter);
+    return () => {
+      document.removeEventListener('keydown', keyEnter);
+    };
+  }, [handleSubmit]);
+
   //получаем массив всех фильмов от beatfilms и фильтруем
   const onSearch = (inputValue, isChecked, movies) => {
     if (movies.length === 0) {
@@ -73,7 +85,9 @@ function Movies({ loggedIn, savedMovies, onSave }) {
         const searchText =
           item.nameRU.toLowerCase().includes(inputValue.toLowerCase()) ||
           item.nameEN.toLowerCase().includes(inputValue.toLowerCase());
-        return isChecked ? searchText && item.duration <= shortMovieDuration : searchText;
+        return isChecked
+          ? searchText && item.duration <= shortMovieDuration
+          : searchText;
       });
     }
     setFliteredMovies(searchResult);

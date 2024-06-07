@@ -1,4 +1,4 @@
-import { BASE_URL } from '../utils/config';
+import { BASE_URL, MOVIES_API } from '../utils/config';
 
 class MainApi {
   constructor(params) {
@@ -57,7 +57,7 @@ class MainApi {
         duration: movie.duration,
         year: movie.year,
         description: movie.description,
-        image: `${BASE_URL}${movie.image.url}`,
+        image: `${MOVIES_API}${movie.image.url}`,
         trailerLink: movie.trailerLink,
         thumbnail: `${BASE_URL}${movie.image.url}`,
         movieId: movie.id,

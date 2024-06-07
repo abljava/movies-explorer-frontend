@@ -59,7 +59,7 @@ class MainApi {
         description: movie.description,
         image: `${MOVIES_API}${movie.image.url}`,
         trailerLink: movie.trailerLink,
-        thumbnail: `${BASE_URL}${movie.image.url}`,
+        thumbnail: `${MOVIES_API}${movie.image.url}`,
         movieId: movie.id,
         nameEN: movie.nameEN,
       }),

@@ -1,6 +1,6 @@
 export const REGEX_EMAIL = '^\\S+@\\S+\\.\\S+$';
 export const MOVIES_API = 'https://api.nomoreparties.co';
-export const BASE_URL = 'https://coffee-api.lialiushkina.ru';
+export const BASE_URL = 'http://coffee-api.lialiushkina.ru';
 
 export const shortMovieDuration = 40;
 
